@@ -1,0 +1,13 @@
+.navWrapper {
+    background-color: $color-light;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .svg-inline--fa {
+    height: 32px;
+    padding: 20px;
+    color: $color-primary;
+  }
+  

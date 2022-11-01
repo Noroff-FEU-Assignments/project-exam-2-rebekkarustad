@@ -1,0 +1,51 @@
+.image1 {
+    grid-area: image1;
+  }
+  .image2 {
+    grid-area: image2;
+  }
+  .image3 {
+    grid-area: image3;
+  }
+  .image4 {
+    grid-area: image4;
+  }
+  .image5 {
+    grid-area: image5;
+  }
+  .image6 {
+    grid-area: image6;
+    border-radius: 0 30px 0 0;
+  }
+  .image7 {
+    grid-area: image7;
+  }
+  .image8 {
+    grid-area: image8;
+  }
+  .image9 {
+    grid-area: image9;
+    border-radius: 0 0 30px 0;
+  }
+  
+  .collageWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 20% 12% 5% 20% 16% 15% 12%;
+    gap: 10px;
+    height: 665px;
+    grid-template-areas:
+      "image3 image8 image6"
+      "image3 image5 image6"
+      "image1 image5 image6"
+      "image1 image5 image2"
+      "image1 image4 image2"
+      "image1 image4 image9"
+      "image7 image4 image9";
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  

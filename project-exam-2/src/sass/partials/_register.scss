@@ -1,0 +1,105 @@
+// Form
+.loginWrapper {
+    max-height: 725px;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 30px;
+    background-color: $color-light;
+    border-radius: 30px;
+    box-shadow: 3px 3px 7px $color-shadow;
+  
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  
+    margin: auto;
+  }
+  
+  .formWrapper {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid $color-primary;
+    border-radius: 5px;
+  }
+  
+  .loginCheck {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+  }
+  
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: $color-primary;
+    width: 1.15rem;
+    height: 1.15rem;
+    border: 1px solid $color-primary;
+    border-radius: 5px;
+    transform: translateY(-0.075rem);
+    display: grid;
+    place-content: center;
+    &:before {
+      content: "";
+      width: 0.65rem;
+      height: 0.65rem;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1rem 1rem $color-primary;
+      transform-origin: bottom left;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    }
+    &:checked::before {
+      transform: scale(1);
+    }
+    &:focus {
+      outline: max(2px) solid $color-primary;
+      outline-offset: max(2px);
+    }
+  }
+  
+  .checkboxText {
+    padding-left: 10px;
+    padding-top: 2px;
+  }
+  
+  .underHeading {
+    font-size: 1.5rem;
+  }
+  
+  .loginInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .labelText {
+    font-size: 1.1rem;
+  }
+  
+  .error {
+    background-color: $color-error;
+    padding: 10px;
+    grid-column: -1/1;
+  }
+  
