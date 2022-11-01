@@ -4,3 +4,4 @@ export const FULL_API =
 export const REGISTER_PATH = "/social/auth/register";
 export const LOGIN_PATH = "/social/auth/login";
 export const POST_PATH = "/social/posts";
+export const FLAG_PATH = "?_author=true&_comments=true&_reactions=true";
