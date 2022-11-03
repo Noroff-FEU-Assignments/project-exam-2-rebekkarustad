@@ -70,6 +70,25 @@ function PostPage() {
         ) : (
           <img src={data.media} alt={data.author} className="postImage" />
         )}
+        <div className="reactWrapper">
+          <div className="emojiWrapper">
+            {data.reactions.map((reaction) => (
+              <p key={reaction.postId} className="emoji">
+                {reaction.symbol}
+              </p>
+            ))}
+            <p>
+              {data.reactions.length < 1
+                ? `0 reactions`
+                : `${data.reactions.length}`}
+            </p>
+          </div>
+          <p>
+            {data.comments.length === 1
+              ? `${data.comments.length} comment`
+              : `${data.comments.length} comments`}
+          </p>
+        </div>
         <h1>{data.title}</h1>
         <p className="postBody">{data.body}</p>
 
@@ -81,23 +100,6 @@ function PostPage() {
             <p>{comment.body}</p>
           </div>
         ))}
-        <div className="reactWrapper">
-          {data.reactions.map((reaction) => (
-            <p key={reaction.postId} className="emoji">
-              {reaction.symbol}
-            </p>
-          ))}
-          <p>
-            {data.reactions.length < 1
-              ? `0 reactions`
-              : `${data.reactions.length}`}
-          </p>
-          <p>
-            {data.comments.length === 1
-              ? `${data.comments.length} comment`
-              : `${data.comments.length} comments`}
-          </p>
-        </div>
       </div>
     </div>
   );
