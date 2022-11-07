@@ -1,0 +1,10 @@
+.createWrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  display: grid;
+  .formWrapper {
+    background-color: $color-light;
+    border-radius: 20px;
+  }
+}

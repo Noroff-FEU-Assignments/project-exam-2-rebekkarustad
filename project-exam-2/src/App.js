@@ -8,6 +8,7 @@ import DiscoverFeed from "./components/pages/DiscoverFeed";
 import MyProfile from "./components/pages/MyProfile";
 import PostPage from "./components/pages/PostPage";
 import Profile from "./components/pages/Profile";
+import CreatePost from "./components/pages/CreatePost";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/post/:id" element={<PostPage />} />
+        <Route path="/create" element={<CreatePost />} />
       </Routes>
     </div>
   );

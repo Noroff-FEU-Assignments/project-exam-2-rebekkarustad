@@ -18,7 +18,7 @@ export default function Nav() {
         <Link to="/profile">
           <FontAwesomeIcon icon={faUser} />
         </Link>
-        <Link to="/upload">
+        <Link to="/create">
           <FontAwesomeIcon icon={faUpload} />
         </Link>
       </div>
