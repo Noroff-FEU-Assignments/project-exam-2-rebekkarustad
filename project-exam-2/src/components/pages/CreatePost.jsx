@@ -94,7 +94,7 @@ export default function CreatePost() {
             </div>
 
             <button className="signButton">
-              {submitting ? "creating..." : "Create"}
+              {submitting ? "Creating..." : "Create"}
             </button>
           </form>
         </div>
