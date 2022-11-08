@@ -40,6 +40,7 @@ function Login() {
       console.log("response", response.data);
 
       window.localStorage.setItem("token", response.data.accessToken);
+      window.localStorage.setItem("name", response.data.name);
       navigate("/feed");
     } catch (error) {
       console.log("error", error);

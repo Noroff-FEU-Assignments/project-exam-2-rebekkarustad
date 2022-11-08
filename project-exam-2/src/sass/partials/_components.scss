@@ -15,3 +15,12 @@ textarea {
   border: 2px solid $color-primary;
   border-radius: 5px;
 }
+
+//logout
+
+.navRight {
+  button {
+    background-color: transparent;
+    border: none;
+  }
+}
