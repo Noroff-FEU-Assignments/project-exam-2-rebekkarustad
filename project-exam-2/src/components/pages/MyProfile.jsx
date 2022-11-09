@@ -54,8 +54,21 @@ export default function MyProfile() {
       <Nav />
       <div className="myProfileWrapper">
         <div className="profileImageWrapper">
-          <img src={info.banner} alt={info.name} className="profileBanner" />
-          <img src={info.avatar} alt={info.name} className="profileAvatar" />
+          {info.banner === null || info.banner === "" ? (
+            <span className="blankBanner"></span>
+          ) : (
+            <img
+              src={info.banner}
+              alt={info.author}
+              className="profileBanner"
+            />
+          )}
+
+          {info.avatar === null ? (
+            <img src={profile} alt={info.name} className="profileAvatar" />
+          ) : (
+            <img src={info.avatar} alt={info.name} className="profileAvatar" />
+          )}
         </div>
         <div className="profileDetail">
           <Heading title={info.name} />
