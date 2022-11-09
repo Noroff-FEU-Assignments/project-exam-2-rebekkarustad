@@ -14,8 +14,6 @@ export default function DiscoverFeed() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-
       const getToken = window.localStorage.getItem("token");
 
       try {

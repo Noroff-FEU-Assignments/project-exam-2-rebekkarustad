@@ -1,0 +1,97 @@
+.myProfileWrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.profileImageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profileBanner {
+  height: 400px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.profileAvatar {
+  margin-top: -120px;
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
+
+.profileDetail {
+  background-color: $color-light;
+  padding: 20px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  h1 {
+    grid-column: -1/1;
+  }
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+.profileButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 0;
+  gap: 20px;
+  button {
+    background-color: $color-primary;
+    padding: 20px;
+    color: $color-light;
+    font-size: 1.4rem;
+    font-weight: 400;
+    border: 2px solid $color-primary;
+    border-radius: 20px;
+    &:hover {
+      background-color: $color-light;
+      color: $color-primary;
+    }
+  }
+}
+
+.profilePosts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  h2 {
+    font-family: $font-header;
+    color: $color-primary;
+    font-size: 1.7rem;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.profilePostsCards {
+  background-color: $color-light;
+  padding: 20px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  img {
+    grid-column: -1/1;
+  }
+  h2 {
+    grid-column: -1/1;
+  }
+  p {
+    color: $color-text;
+    font-size: 1.1rem;
+    &:last-child {
+      text-align: end;
+    }
+  }
+}
