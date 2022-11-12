@@ -11,6 +11,7 @@ import Profile from "./components/pages/Profile";
 import ProfileFeed from "./components/pages/ProfileFeed";
 import CreatePost from "./components/pages/CreatePost";
 import EditProfile from "./components/pages/EditProfile";
+import ThankYou from "./components/pages/ThankYou";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/profile" element={<ProfileFeed />} />
         <Route path="/profile/:name" element={<Profile />} />
         <Route path="/editprofile" element={<EditProfile />} />
+        <Route path="/thanks" element={<ThankYou />} />
       </Routes>
     </div>
   );

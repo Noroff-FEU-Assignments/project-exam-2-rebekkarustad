@@ -42,7 +42,7 @@ export default function SignUp() {
     try {
       const response = await axios.post(url, data);
       console.log("response", response.data);
-      history("/login");
+      history("/thanks");
     } catch (error) {
       console.log("error", error);
       setLoginError("Your password or name is wrong");
