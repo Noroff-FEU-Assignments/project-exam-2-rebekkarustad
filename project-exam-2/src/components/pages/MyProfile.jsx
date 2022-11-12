@@ -64,7 +64,7 @@ export default function MyProfile() {
             />
           )}
 
-          {info.avatar === null ? (
+          {info.avatar === null || info.avatar === "" ? (
             <img src={profile} alt={info.name} className="profileAvatar" />
           ) : (
             <img src={info.avatar} alt={info.name} className="profileAvatar" />
@@ -76,8 +76,12 @@ export default function MyProfile() {
           <p>{info._count.following} following</p>
         </div>
         <div className="profileButtons">
-          <button>Edit profile</button>
-          <button>Share</button>
+          <Link to="/editprofile">
+            <button className="profileBtn">Edit profile</button>
+          </Link>
+          <Link to="/editprofile">
+            <button className="profileBtn">Share</button>
+          </Link>
         </div>
         <div className="profilePosts">
           {posts.map((post) => (

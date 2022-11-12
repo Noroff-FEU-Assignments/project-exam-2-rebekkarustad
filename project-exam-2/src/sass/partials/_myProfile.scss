@@ -46,18 +46,20 @@
   grid-template-columns: 1fr 1fr;
   margin: 20px 0;
   gap: 20px;
-  button {
-    background-color: $color-primary;
-    padding: 20px;
-    color: $color-light;
-    font-size: 1.4rem;
-    font-weight: 400;
-    border: 2px solid $color-primary;
-    border-radius: 20px;
-    &:hover {
-      background-color: $color-light;
-      color: $color-primary;
-    }
+}
+
+.profileBtn {
+  background-color: $color-primary;
+  padding: 20px;
+  color: $color-light;
+  font-size: 1.4rem;
+  font-weight: 400;
+  border: 2px solid $color-primary;
+  border-radius: 20px;
+  width: 100%;
+  &:hover {
+    background-color: $color-light;
+    color: $color-primary;
   }
 }
 

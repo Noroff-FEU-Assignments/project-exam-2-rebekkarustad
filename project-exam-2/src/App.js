@@ -10,6 +10,7 @@ import PostPage from "./components/pages/PostPage";
 import Profile from "./components/pages/Profile";
 import ProfileFeed from "./components/pages/ProfileFeed";
 import CreatePost from "./components/pages/CreatePost";
+import EditProfile from "./components/pages/EditProfile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path="/profile" element={<ProfileFeed />} />
         <Route path="/profile/:name" element={<Profile />} />
+        <Route path="/editprofile" element={<EditProfile />} />
       </Routes>
     </div>
   );
