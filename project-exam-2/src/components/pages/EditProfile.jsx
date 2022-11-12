@@ -28,6 +28,15 @@ export default function EditProfile() {
   const getToken = window.localStorage.getItem("token");
   const getName = window.localStorage.getItem("name");
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   useEffect(() => {
     const fetchProfile = async () => {
       const getUrl = BASE_API + PROFILE_PATH + `${getName}`;
@@ -41,7 +50,10 @@ export default function EditProfile() {
 
         const result = await axios.get(getUrl, options);
         console.log("response", result.data);
-
+        reset({
+          avatar: result.data.avatar,
+          banner: result.data.banner,
+        });
         setData(result.data);
       } catch (error) {
         setError(error);
@@ -52,15 +64,7 @@ export default function EditProfile() {
       }
     };
     fetchProfile();
-  }, [getName, getToken]);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  }, [getName, getToken, reset]);
 
   async function onSubmit(info) {
     setSubmitting(true);
@@ -86,6 +90,7 @@ export default function EditProfile() {
       setCreateError("Something went wrong");
     } finally {
       setSubmitting(false);
+      setLoading(false);
     }
   }
 
@@ -97,7 +102,7 @@ export default function EditProfile() {
       <Nav />
       <div className="editProfileWrapper">
         <Heading title="Edit profile" />
-        {data.avatar === null || data.avatar === " " ? (
+        {data.avatar === null || data.avatar === "" ? (
           <img src={profile} alt={data.name} className="editAvatar" />
         ) : (
           <img src={data.avatar} alt={data.name} className="editAvatar" />
@@ -116,19 +121,24 @@ export default function EditProfile() {
 
           <div className="loginInfo">
             {errors.avatar && <FormError>{errors.avatar.message}</FormError>}
-            <label className="labelText">Avatar</label>
+            <label className="labelText">
+              <h2>Avatar</h2>
+            </label>
             <input {...register("avatar")} placeholder="https://" />
           </div>
 
           <div className="loginInfo">
             {errors.banner && <FormError>{errors.banner.message}</FormError>}
-            <label className="labelText">Banner</label>
+            <label className="labelText">
+              <h2>Banner</h2>
+            </label>
             <input {...register("banner")} placeholder="https://" />
           </div>
 
           <button className="signButton">
             {submitting ? "Saving..." : "Save changes"}
           </button>
+          {/* <button className="cancel">Cancel</button> */}
         </form>
       </div>
     </div>
