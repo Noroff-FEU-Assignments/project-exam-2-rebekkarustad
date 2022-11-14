@@ -1,0 +1,50 @@
+.profileFeedWrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  h1 {
+    background-color: $color-light;
+    border-radius: 20px;
+    grid-column: 2 / 3;
+    text-align: center;
+    padding: 10px;
+    text-decoration: underline;
+  }
+}
+
+.feedCardsWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column: 1 / 4;
+  gap: 20px;
+  img {
+    object-fit: cover;
+  }
+}
+.feedCards {
+  background-color: $color-light;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  align-items: center;
+  h3 {
+    margin: 60px auto 10px auto;
+  }
+}
+
+.profileFeedAvatar {
+  width: 100px;
+  height: 100px;
+  margin: -50px;
+  border-radius: 50%;
+}
+
+.profileFeedBanner {
+  width: 100%;
+  height: 200px;
+  border-radius: 20px;
+}

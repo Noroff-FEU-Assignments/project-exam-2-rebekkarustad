@@ -48,7 +48,7 @@ export default function DiscoverFeed() {
       <div className="feedWrapper">
         <h1>Explore</h1>
 
-        <Link to="/myprofile" className="profileButton">
+        <Link to="/profile" className="profileButton">
           Profiles
         </Link>
 
