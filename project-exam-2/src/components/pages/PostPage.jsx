@@ -1,6 +1,6 @@
 import Nav from "../layout/Nav";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -28,6 +28,9 @@ function PostPage() {
   const url = BASE_API + POST_PATH + `/${id}` + FLAG_PATH;
   const commentUrl = BASE_API + POST_PATH + `/${id}/comment`;
 
+  const getName = window.localStorage.getItem("name");
+
+  console.log(getName);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -74,7 +77,7 @@ function PostPage() {
 
     try {
       const response = await axios({
-        method: "post",
+        method: "put",
         url: commentUrl,
         data: info,
         headers: {
@@ -101,18 +104,30 @@ function PostPage() {
     <div>
       <Nav />
       <div className="postWrapper">
-        <div className="profileInfo">
-          {data.author.avatar === null ? (
-            <img src={profile} alt={data.author.name} className="blankAvatar" />
-          ) : (
-            <img
-              src={data.author.avatar}
-              alt={data.author.name}
-              className="postAvatar"
-            />
-          )}
+        <div className="profileInfoPost">
+          <div>
+            {data.author.avatar === null ? (
+              <img
+                src={profile}
+                alt={data.author.name}
+                className="blankAvatar"
+              />
+            ) : (
+              <img
+                src={data.author.avatar}
+                alt={data.author.name}
+                className="postAvatar"
+              />
+            )}
 
-          <p className="authorName">{data.author.name}</p>
+            <p className="authorName">{data.author.name}</p>
+          </div>
+
+          {data.author.name === getName ? (
+            <Link to={`/editpost/${data.id}`}>Edit post</Link>
+          ) : (
+            <span></span>
+          )}
         </div>
 
         {data.media === null || data.media === "" ? (

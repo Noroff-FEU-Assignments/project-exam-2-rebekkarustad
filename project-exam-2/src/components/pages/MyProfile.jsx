@@ -85,8 +85,8 @@ export default function MyProfile() {
         </div>
         <div className="profilePosts">
           {posts.map((post) => (
-            <Link to={`/post/${post.id}`}>
-              <div key={post.id} className="profilePostsCards">
+            <Link to={`/editpost/${post.id}`} key={post.id}>
+              <div className="profilePostsCards">
                 <img
                   src={post.media}
                   alt={post.title}

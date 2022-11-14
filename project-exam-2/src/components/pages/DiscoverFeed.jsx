@@ -70,7 +70,13 @@ export default function DiscoverFeed() {
                   />
                 )}
 
-                <p className="authorName">{post.author.name}</p>
+                <p className="authorName"></p>
+                <Link
+                  to={`/profile/${post.author.name}`}
+                  className="authorName"
+                >
+                  {post.author.name}
+                </Link>
               </div>
 
               {post.media === null || post.media === "" ? (

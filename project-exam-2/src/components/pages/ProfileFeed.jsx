@@ -58,36 +58,38 @@ export default function ProfileFeed() {
 
         <div className="feedCardsWrapper">
           {data.map((profile) => (
-            <div key={profile.name} className="feedCards">
-              {profile.banner === null || profile.banner === "" ? (
-                <img
-                  src={blankBanner}
-                  alt={profile.name}
-                  className="profileFeedBanner"
-                />
-              ) : (
-                <img
-                  src={profile.banner}
-                  alt={profile.name}
-                  className="profileFeedBanner"
-                />
-              )}
-              {profile.avatar === null || profile.avatar === "" ? (
-                <img
-                  src={blankProfile}
-                  alt={profile.name}
-                  className="profileFeedAvatar"
-                />
-              ) : (
-                <img
-                  src={profile.avatar}
-                  alt={profile.name}
-                  className="profileFeedAvatar"
-                />
-              )}
-              <h3>{profile.name}</h3>
-              <p>{profile._count.followers} followers</p>
-            </div>
+            <Link to={`/profile/${profile.name}`}>
+              <div key={profile.name} className="feedCards">
+                {profile.banner === null || profile.banner === "" ? (
+                  <img
+                    src={blankBanner}
+                    alt={profile.name}
+                    className="profileFeedBanner"
+                  />
+                ) : (
+                  <img
+                    src={profile.banner}
+                    alt={profile.name}
+                    className="profileFeedBanner"
+                  />
+                )}
+                {profile.avatar === null || profile.avatar === "" ? (
+                  <img
+                    src={blankProfile}
+                    alt={profile.name}
+                    className="profileFeedAvatar"
+                  />
+                ) : (
+                  <img
+                    src={profile.avatar}
+                    alt={profile.name}
+                    className="profileFeedAvatar"
+                  />
+                )}
+                <h3>{profile.name}</h3>
+                <p>{profile._count.followers} followers</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
