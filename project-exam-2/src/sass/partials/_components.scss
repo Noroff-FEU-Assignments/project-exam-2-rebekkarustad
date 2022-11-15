@@ -14,6 +14,10 @@ textarea {
   color: $color-light;
   border: 2px solid $color-primary;
   border-radius: 5px;
+  &:hover {
+    background-color: $color-light;
+    color: $color-primary;
+  }
 }
 
 //logout
@@ -34,5 +38,19 @@ textarea {
   justify-content: center;
   p {
     margin-bottom: 50px;
+  }
+}
+
+//delete
+.deleteButton {
+  background-color: $color-light;
+  padding: 10px;
+  font-size: 1.3rem;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+  border-radius: 5px;
+  &:hover {
+    background-color: $color-primary;
+    color: $color-light;
   }
 }
