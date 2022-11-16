@@ -8,6 +8,7 @@ import { OPTIONS } from "../../constants/options";
 import Nav from "../layout/Nav";
 import blankProfile from "../../images/profile.jpg";
 import blankBanner from "../../images/banner.jpg";
+import { onImageError } from "../../constants/onImageError";
 
 export default function ProfileFeed() {
   const [data, setData] = useState([]);
@@ -16,8 +17,6 @@ export default function ProfileFeed() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const getToken = window.localStorage.getItem("token");
-
       const url = BASE_API + PROFILE_PATH;
       // const imageUrl = BASE_API + PROFILE_PATH;
 
@@ -79,6 +78,7 @@ export default function ProfileFeed() {
                     src={profile.avatar}
                     alt={profile.name}
                     className="profileFeedAvatar"
+                    onError={onImageError}
                   />
                 )}
                 <h3>{profile.name}</h3>

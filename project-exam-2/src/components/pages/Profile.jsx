@@ -8,6 +8,7 @@ import profile from "../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../constants/api";
 import Heading from "../layout/Heading";
 import { OPTIONS } from "../../constants/options";
+import { onImageError } from "../../constants/onImageError";
 
 export default function Profile() {
   const [data, setData] = useState([]);
@@ -62,7 +63,12 @@ export default function Profile() {
           {data.avatar === null || data.avatar === "" ? (
             <img src={profile} alt={data.name} className="profileAvatar" />
           ) : (
-            <img src={data.avatar} alt={data.name} className="profileAvatar" />
+            <img
+              src={data.avatar}
+              alt={data.name}
+              className="profileAvatar"
+              onError={onImageError}
+            />
           )}
         </div>
         <div className="profileDetail">

@@ -16,7 +16,6 @@ export default function MyProfile() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const getToken = window.localStorage.getItem("token");
       const getName = window.localStorage.getItem("name");
 
       const url = BASE_API + PROFILE_PATH + `${getName}`;

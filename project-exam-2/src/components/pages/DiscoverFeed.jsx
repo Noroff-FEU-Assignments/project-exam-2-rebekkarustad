@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { FULL_API } from "../../constants/api";
 import { Link } from "react-router-dom";
+import { OPTIONS } from "../../constants/options";
+import { onImageError } from "../../constants/onImageError";
 
 import Nav from "../layout/Nav";
 import profile from "../../images/profile.jpg";
@@ -14,16 +16,8 @@ export default function DiscoverFeed() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const getToken = window.localStorage.getItem("token");
-
       try {
-        const options = {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        };
-
-        const response = await fetch(url, options);
+        const response = await fetch(url, OPTIONS);
         const data = await response.json();
 
         setData(data);
@@ -67,6 +61,7 @@ export default function DiscoverFeed() {
                     src={post.author.avatar}
                     alt={post.author.name}
                     className="postAvatar"
+                    onError={onImageError}
                   />
                 )}
 
@@ -92,8 +87,8 @@ export default function DiscoverFeed() {
               <p className="postBody">{post.body}</p>
               <div className="replyWrapper">
                 <div className="reactWrapper">
-                  {post.reactions.map((reaction) => (
-                    <div key={reaction.postId}>
+                  {post.reactions.map((reaction, i) => (
+                    <div key={i}>
                       <p className="emoji">{reaction.symbol}</p>
                     </div>
                   ))}
