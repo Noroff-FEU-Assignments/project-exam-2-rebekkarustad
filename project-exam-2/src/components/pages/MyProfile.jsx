@@ -6,6 +6,7 @@ import Nav from "../layout/Nav";
 import profile from "../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../constants/api";
 import Heading from "../layout/Heading";
+import { OPTIONS } from "../../constants/options";
 
 export default function MyProfile() {
   const [info, setInfo] = useState([]);
@@ -22,14 +23,8 @@ export default function MyProfile() {
       const postUrl = url + `/posts`;
 
       try {
-        const options = {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        };
-
-        const response = await axios.get(url, options);
-        const result = await axios.get(postUrl, options);
+        const response = await axios.get(url, OPTIONS);
+        const result = await axios.get(postUrl, OPTIONS);
         console.log("response", response.data);
         console.log("response", result.data);
 

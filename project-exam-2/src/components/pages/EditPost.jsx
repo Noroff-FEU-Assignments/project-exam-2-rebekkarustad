@@ -9,6 +9,7 @@ import { BASE_API, POST_PATH, FLAG_PATH } from "../../constants/api";
 import FormError from "../forms/FormError";
 import Nav from "../layout/Nav";
 import Heading from "../layout/Heading";
+import { OPTIONS } from "../../constants/options";
 
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a title"),
@@ -41,17 +42,8 @@ export default function EditPost() {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-
-      const getToken = window.localStorage.getItem("token");
-
       try {
-        const options = {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        };
-
-        const response = await axios(url, options);
+        const response = await axios(url, OPTIONS);
         console.log(response.data);
         reset({
           title: response.data.title,

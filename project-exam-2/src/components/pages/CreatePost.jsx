@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { BASE_API, POST_PATH } from "../../constants/api";
+import { OPTIONS } from "../../constants/options";
 
 import Nav from "../layout/Nav";
 import Heading from "../layout/Heading";
@@ -39,16 +40,12 @@ export default function CreatePost() {
 
     console.log(info);
 
-    const getToken = window.localStorage.getItem("token");
-
     try {
       const response = await axios({
         method: "post",
         url: baseUrl,
         data: info,
-        headers: {
-          Authorization: `Bearer ${getToken}`,
-        },
+        headers: OPTIONS,
       });
       console.log("response", response.data);
       history(`/post/${response.data.id}`);

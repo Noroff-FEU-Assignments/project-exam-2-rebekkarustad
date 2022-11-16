@@ -10,6 +10,7 @@ import Nav from "../layout/Nav";
 import Heading from "../layout/Heading";
 import profile from "../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../constants/api";
+import { OPTIONS } from "../../constants/options";
 
 const schema = yup.object().shape({
   avatar: yup.string().url("Must be a valid URL"),
@@ -42,13 +43,7 @@ export default function EditProfile() {
       const getUrl = BASE_API + PROFILE_PATH + `${getName}`;
 
       try {
-        const options = {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        };
-
-        const result = await axios.get(getUrl, options);
+        const result = await axios.get(getUrl, OPTIONS);
         console.log("response", result.data);
         reset({
           avatar: result.data.avatar,

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { BASE_API, PROFILE_PATH } from "../../constants/api";
+import { OPTIONS } from "../../constants/options";
 
 import Nav from "../layout/Nav";
 import blankProfile from "../../images/profile.jpg";
@@ -21,13 +22,7 @@ export default function ProfileFeed() {
       // const imageUrl = BASE_API + PROFILE_PATH;
 
       try {
-        const options = {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        };
-
-        const response = await axios.get(url, options);
+        const response = await axios.get(url, OPTIONS);
 
         console.log("response", response.data);
 

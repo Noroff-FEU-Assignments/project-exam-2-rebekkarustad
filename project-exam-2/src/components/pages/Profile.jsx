@@ -7,6 +7,7 @@ import Nav from "../layout/Nav";
 import profile from "../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../constants/api";
 import Heading from "../layout/Heading";
+import { OPTIONS } from "../../constants/options";
 
 export default function Profile() {
   const [data, setData] = useState([]);
@@ -21,16 +22,9 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const getToken = window.localStorage.getItem("token");
-
       try {
-        const options = {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        };
-        const response = await axios(url, options);
-        const posts = await axios(postUrl, options);
+        const response = await axios(url, OPTIONS);
+        const posts = await axios(postUrl, OPTIONS);
 
         console.log("response", response.data);
         console.log("response", posts.data);

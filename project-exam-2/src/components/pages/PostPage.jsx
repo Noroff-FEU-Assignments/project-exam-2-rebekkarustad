@@ -10,6 +10,7 @@ import { BASE_API, POST_PATH, FLAG_PATH } from "../../constants/api";
 
 import profile from "../../images/profile.jpg";
 import FormError from "../forms/FormError";
+import { OPTIONS } from "../../constants/options";
 
 const schema = yup.object().shape({
   body: yup.string().required("Please enter a comment"),
@@ -35,16 +36,8 @@ function PostPage() {
     const fetchData = async () => {
       setLoading(true);
 
-      const getToken = window.localStorage.getItem("token");
-
       try {
-        const options = {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        };
-
-        const response = await fetch(url, options);
+        const response = await fetch(url, OPTIONS);
         const data = await response.json();
 
         setData(data);
