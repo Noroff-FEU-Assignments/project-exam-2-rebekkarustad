@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,7 +13,7 @@ import Heading from "../layout/Heading";
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a title"),
   body: yup.string().required("Please enter some text"),
-  tag: yup.array().ensure().nullable().required(),
+  tags: yup.array().ensure().nullable(),
   media: yup.string().url("Must be a valid URL"),
 });
 
@@ -56,7 +56,7 @@ export default function EditPost() {
         reset({
           title: response.data.title,
           body: response.data.body,
-          tag: response.data.tags,
+          tags: response.data.tags,
           media: response.data.media,
         });
 
@@ -90,7 +90,7 @@ export default function EditPost() {
         },
       });
       console.log("response", response.data);
-      history(`/post/${response.data.id}`);
+      // history(`/post/${response.data.id}`);
     } catch (error) {
       console.log("error", error);
       setCreateError("Something went wrong");
@@ -143,9 +143,9 @@ export default function EditPost() {
             </div>
 
             <div className="loginInfo">
-              {errors.tag && <FormError>{errors.tag.message}</FormError>}
+              {errors.tags && <FormError>{errors.tags.message}</FormError>}
               <label className="labelText">Tags</label>
-              <input {...register("tag")} />
+              <input {...register("tags")} />
             </div>
 
             <div className="loginInfo">

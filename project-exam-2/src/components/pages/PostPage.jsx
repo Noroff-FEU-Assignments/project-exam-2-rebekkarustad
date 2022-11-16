@@ -157,6 +157,12 @@ function PostPage() {
         <h1>{data.title}</h1>
         <p className="postBody">{data.body}</p>
 
+        {data.tags.map((tag) => (
+          <div key="" className="commentWrapper">
+            <p>{tag}</p>
+          </div>
+        ))}
+
         <hr />
 
         {data.comments.map((comment) => (
