@@ -9,13 +9,30 @@ import Heading from "../layout/Heading";
 import FormError from "../forms/FormError";
 import Collage from "../layout/Collage";
 import { BASE_API, REGISTER_PATH } from "../../constants/api";
+import { NAME_REGEX, EMAIL_REGEX } from "../../constants/regex";
 
 const url = BASE_API + REGISTER_PATH;
 
 const schema = yup.object().shape({
-  name: yup.string().required("Please enter your name"),
-  email: yup.string().email().required("Please enter your email address"), // fix this later
-  password: yup.string().required("Please enter your password"),
+  name: yup
+    .string()
+    .matches(
+      NAME_REGEX,
+      "Your name does not match the criteria: Must not contain punctuation symbols apart from underscore "
+    )
+    .required("Please enter your name"),
+  email: yup
+    .string()
+    .email()
+    .matches(
+      EMAIL_REGEX,
+      "Your name does not match the criteria: must be a valid 'stud.noroff.no' or 'noroff.no' email address"
+    )
+    .required("Please enter your email address"),
+  password: yup
+    .string()
+    .min(8, "The password must be at least 8 letters long")
+    .required("Please enter your password"),
   terms: yup.boolean().oneOf([true], "Must Accept Terms and Conditions"),
 });
 
@@ -45,7 +62,7 @@ export default function SignUp() {
       history("/thanks");
     } catch (error) {
       console.log("error", error);
-      setLoginError("Your password or name is wrong");
+      setLoginError("Your username is already in use. Please select another.");
     } finally {
       setSubmitting(false);
     }
@@ -60,7 +77,7 @@ export default function SignUp() {
           {loginError && <FormError>{loginError}</FormError>}
           <div className="loginInfo">
             {errors.name && <FormError>{errors.name.message}</FormError>}
-            <label className="labelText">Name*</label>
+            <label className="labelText">Username*</label>
             <input {...register("name")} />
           </div>
           <div className="loginInfo">

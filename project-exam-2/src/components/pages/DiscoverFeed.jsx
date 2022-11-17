@@ -6,13 +6,20 @@ import { onImageError } from "../../constants/onImageError";
 
 import Nav from "../layout/Nav";
 import profile from "../../images/profile.jpg";
+import LoadingSpinner from "../layout/LoadingSpinner";
 
-const url = FULL_API;
+var url = FULL_API;
 
 export default function DiscoverFeed() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [limit] = useState(50);
+  const [offset] = useState(0);
+
+  url = url + `&limit=${limit}&offset=${offset}`;
+
+  console.log(url);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,9 +38,6 @@ export default function DiscoverFeed() {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading</div>; //add a spinner
-  if (error) return <div>error</div>;
-
   console.log(data);
 
   return (
@@ -47,6 +51,13 @@ export default function DiscoverFeed() {
         </Link>
 
         <div className="feedCard">
+          {loading && (
+            <div className="spinner">
+              <LoadingSpinner />
+            </div>
+          )}
+          {error && <div>Error</div>}
+
           {data.map((post) => (
             <div key={post.id} className="postDetail">
               <div className="profileInfo">
@@ -77,7 +88,7 @@ export default function DiscoverFeed() {
               {post.media === null || post.media === "" ? (
                 <span></span>
               ) : (
-                <img src={post.media} alt={post.author} className="postImage" />
+                <img src={post.media} alt={post.title} className="postImage" />
               )}
               <div className="postHeading">
                 <Link to={`/post/${post.id}`}>

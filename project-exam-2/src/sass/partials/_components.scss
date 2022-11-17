@@ -54,3 +54,22 @@ textarea {
     color: $color-light;
   }
 }
+
+// Spinner
+.text-dark {
+  color: $color-primary !important;
+}
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.35rem;
+}
+
+.spinner {
+  padding-top: 20px;
+  display: grid;
+  justify-items: center;
+  align-self: center;
+  justify-self: center;
+  grid-column: 1 / 4;
+}

@@ -7,6 +7,7 @@ import profile from "../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../constants/api";
 import Heading from "../layout/Heading";
 import { OPTIONS } from "../../constants/options";
+import LoadingSpinner from "../layout/LoadingSpinner";
 
 export default function MyProfile() {
   const [info, setInfo] = useState([]);
@@ -29,72 +30,81 @@ export default function MyProfile() {
 
         setInfo(response.data);
         setPosts(result.data);
+        setLoading(false);
       } catch (error) {
         setError(error);
         setLoading(false);
         console.log(error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchProfile();
   }, []);
 
-  if (loading) return <div>Loading</div>; //add a spinner
   if (error) return <div>error</div>;
 
   return (
     <div>
       <Nav />
-      <div className="myProfileWrapper">
-        <div className="profileImageWrapper">
-          {info.banner === null || info.banner === "" ? (
-            <span className="blankBanner"></span>
-          ) : (
-            <img
-              src={info.banner}
-              alt={info.author}
-              className="profileBanner"
-            />
-          )}
+      {loading ? (
+        <div className="spinner">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <div className="myProfileWrapper">
+          <div className="profileImageWrapper">
+            {info.banner === null || info.banner === "" ? (
+              <span className="blankBanner"></span>
+            ) : (
+              <img
+                src={info.banner}
+                alt={info.author}
+                className="profileBanner"
+              />
+            )}
 
-          {info.avatar === null || info.avatar === "" ? (
-            <img src={profile} alt={info.name} className="profileAvatar" />
-          ) : (
-            <img src={info.avatar} alt={info.name} className="profileAvatar" />
-          )}
-        </div>
-        <div className="profileDetail">
-          <Heading title={info.name} />
-          <p>{info._count.followers} followers</p>
-          <p>{info._count.following} following</p>
-        </div>
-        <div className="profileButtons">
-          <Link to="/editprofile">
-            <button className="profileBtn">Edit profile</button>
-          </Link>
-          <Link to="/editprofile">
-            <button className="profileBtn">Share</button>
-          </Link>
-        </div>
-        <div className="profilePosts">
-          {posts.map((post) => (
-            <Link to={`/post/${post.id}`} key={post.id}>
-              <div className="profilePostsCards">
-                <img
-                  src={post.media}
-                  alt={post.title}
-                  className="profileBanner"
-                />
+            {info.avatar === null || info.avatar === "" ? (
+              <img src={profile} alt={info.name} className="profileAvatar" />
+            ) : (
+              <img
+                src={info.avatar}
+                alt={info.name}
+                className="profileAvatar"
+              />
+            )}
+          </div>
 
-                <h2>{post.title}</h2>
-                <p>{post._count.reactions} reactions</p>
-                <p>{post._count.comments} comments</p>
-              </div>
+          <div className="profileDetail">
+            <Heading title={info.name} />
+            <p>{info._count.followers} followers</p>
+            <p>{info._count.following} following</p>
+          </div>
+          <div className="profileButtons">
+            <Link to="/editprofile">
+              <button className="profileBtn">Edit profile</button>
             </Link>
-          ))}
+            <Link to="/editprofile">
+              <button className="profileBtn">Share</button>
+            </Link>
+          </div>
+          <div className="profilePosts">
+            {posts.map((post) => (
+              <Link to={`/post/${post.id}`} key={post.id}>
+                <div className="profilePostsCards">
+                  <img
+                    src={post.media}
+                    alt={post.title}
+                    className="profileBanner"
+                  />
+
+                  <h2>{post.title}</h2>
+                  <p>{post._count.reactions} reactions</p>
+                  <p>{post._count.comments} comments</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

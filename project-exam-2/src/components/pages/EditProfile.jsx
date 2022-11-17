@@ -11,6 +11,7 @@ import Heading from "../layout/Heading";
 import profile from "../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../constants/api";
 import { OPTIONS } from "../../constants/options";
+import LoadingSpinner from "../layout/LoadingSpinner";
 
 const schema = yup.object().shape({
   avatar: yup.string().url("Must be a valid URL"),
@@ -89,53 +90,57 @@ export default function EditProfile() {
     }
   }
 
-  if (loading) return <div>Loading</div>; //add a spinner
-  if (error) return <div>error</div>;
-
   return (
     <div>
       <Nav />
-      <div className="editProfileWrapper">
-        <Heading title="Edit profile" />
-        {data.avatar === null || data.avatar === "" ? (
-          <img src={profile} alt={data.name} className="editAvatar" />
-        ) : (
-          <img src={data.avatar} alt={data.name} className="editAvatar" />
-        )}
-        <div className="profileName">
-          <h2>Name</h2>
-          <p>{data.name}</p>
+      {loading ? (
+        <div className="spinner">
+          <LoadingSpinner />
         </div>
-        <div className="profileEmail">
-          <h2>Email</h2>
-          <p>{data.email}</p>
-        </div>
-
-        <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
-          {createError && <FormError>{createError}</FormError>}
-
-          <div className="loginInfo">
-            {errors.avatar && <FormError>{errors.avatar.message}</FormError>}
-            <label className="labelText">
-              <h2>Avatar</h2>
-            </label>
-            <input {...register("avatar")} placeholder="https://" />
+      ) : (
+        <div className="editProfileWrapper">
+          <Heading title="Edit profile" />
+          {data.avatar === null || data.avatar === "" ? (
+            <img src={profile} alt={data.name} className="editAvatar" />
+          ) : (
+            <img src={data.avatar} alt={data.name} className="editAvatar" />
+          )}
+          <div className="profileName">
+            <h2>Name</h2>
+            <p>{data.name}</p>
+          </div>
+          <div className="profileEmail">
+            <h2>Email</h2>
+            <p>{data.email}</p>
           </div>
 
-          <div className="loginInfo">
-            {errors.banner && <FormError>{errors.banner.message}</FormError>}
-            <label className="labelText">
-              <h2>Banner</h2>
-            </label>
-            <input {...register("banner")} placeholder="https://" />
-          </div>
+          <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
+            {createError && <FormError>{createError}</FormError>}
 
-          <button className="signButton">
-            {submitting ? "Saving..." : "Save changes"}
-          </button>
-          {/* <button className="cancel">Cancel</button> */}
-        </form>
-      </div>
+            <div className="loginInfo">
+              {errors.avatar && <FormError>{errors.avatar.message}</FormError>}
+              <label className="labelText">
+                <h2>Avatar</h2>
+              </label>
+              <input {...register("avatar")} placeholder="https://" />
+            </div>
+
+            <div className="loginInfo">
+              {errors.banner && <FormError>{errors.banner.message}</FormError>}
+              <label className="labelText">
+                <h2>Banner</h2>
+              </label>
+              <input {...register("banner")} placeholder="https://" />
+            </div>
+
+            <button className="signButton">
+              {submitting ? "Saving..." : "Save changes"}
+            </button>
+            {/* <button className="cancel">Cancel</button> */}
+          </form>
+        </div>
+      )}
+      {error && <div>Error</div>}
     </div>
   );
 }

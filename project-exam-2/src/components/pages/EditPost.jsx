@@ -10,6 +10,7 @@ import FormError from "../forms/FormError";
 import Nav from "../layout/Nav";
 import Heading from "../layout/Heading";
 import { OPTIONS } from "../../constants/options";
+import LoadingSpinner from "../layout/LoadingSpinner";
 
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a title"),
@@ -116,50 +117,54 @@ export default function EditPost() {
     }
   }
 
-  if (loading) return <div>Loading</div>; //add a spinner
-  if (error) return <div>error</div>;
-
   return (
     <div>
       <Nav />
       <div className="createWrapper">
-        <div className="formWrapper">
-          <Heading title="Edit post" />
-          <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
-            {createError && <FormError>{createError}</FormError>}
+        {loading ? (
+          <div className="spinner">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <div className="formWrapper">
+            <Heading title="Edit post" />
+            <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
+              {createError && <FormError>{createError}</FormError>}
 
-            <div className="loginInfo">
-              {errors.title && <FormError>{errors.title.message}</FormError>}
-              <label className="labelText">Title*</label>
-              <input {...register("title")} />
-            </div>
+              <div className="loginInfo">
+                {errors.title && <FormError>{errors.title.message}</FormError>}
+                <label className="labelText">Title*</label>
+                <input {...register("title")} />
+              </div>
 
-            <div className="loginInfo">
-              {errors.tags && <FormError>{errors.tags.message}</FormError>}
-              <label className="labelText">Tags</label>
-              <input {...register("tags")} />
-            </div>
+              <div className="loginInfo">
+                {errors.tags && <FormError>{errors.tags.message}</FormError>}
+                <label className="labelText">Tags</label>
+                <input {...register("tags")} />
+              </div>
 
-            <div className="loginInfo">
-              {errors.media && <FormError>{errors.media.message}</FormError>}
-              <label className="labelText">Featured image</label>
-              <input {...register("media")} />
-            </div>
+              <div className="loginInfo">
+                {errors.media && <FormError>{errors.media.message}</FormError>}
+                <label className="labelText">Featured image</label>
+                <input {...register("media")} />
+              </div>
 
-            <div className="loginInfo">
-              {errors.body && <FormError>{errors.body.message}</FormError>}
-              <label className="labelText">Body*</label>
-              <textarea rows="10" {...register("body")} />
-            </div>
+              <div className="loginInfo">
+                {errors.body && <FormError>{errors.body.message}</FormError>}
+                <label className="labelText">Body*</label>
+                <textarea rows="10" {...register("body")} />
+              </div>
 
-            <button className="signButton">
-              {submitting ? "Saving..." : "Save changes"}
+              <button className="signButton">
+                {submitting ? "Saving..." : "Save changes"}
+              </button>
+            </form>
+            <button onClick={deletePost} className="deleteButton">
+              Delete post
             </button>
-          </form>
-          <button onClick={deletePost} className="deleteButton">
-            Delete post
-          </button>
-        </div>
+          </div>
+        )}
+        {error && <div>Error</div>}
       </div>
     </div>
   );

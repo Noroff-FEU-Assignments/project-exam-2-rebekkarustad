@@ -30,6 +30,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  grid-column: 1 / 4;
 }
 
 input {

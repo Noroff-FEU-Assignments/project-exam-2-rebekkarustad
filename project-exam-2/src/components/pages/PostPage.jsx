@@ -11,6 +11,7 @@ import { BASE_API, POST_PATH, FLAG_PATH } from "../../constants/api";
 import profile from "../../images/profile.jpg";
 import FormError from "../forms/FormError";
 import { OPTIONS } from "../../constants/options";
+import LoadingSpinner from "../layout/LoadingSpinner";
 
 const schema = yup.object().shape({
   body: yup.string().required("Please enter a comment"),
@@ -88,99 +89,103 @@ function PostPage() {
     }
   }
 
-  if (loading) return <div>Loading</div>; //add a spinner
-  if (error) return <div>error</div>;
-
   console.log(data);
 
   return (
     <div>
       <Nav />
-      <div className="postWrapper">
-        <div className="profileInfoPost">
-          <div>
-            {data.author.avatar === null ? (
-              <img
-                src={profile}
-                alt={data.author.name}
-                className="blankAvatar"
-              />
-            ) : (
-              <img
-                src={data.author.avatar}
-                alt={data.author.name}
-                className="postAvatar"
-              />
-            )}
-
-            <p className="authorName">{data.author.name}</p>
-          </div>
-
-          {data.author.name === getName ? (
-            <Link to={`/editpost/${data.id}`}>Edit post</Link>
-          ) : (
-            <span></span>
-          )}
+      {loading ? (
+        <div className="spinner">
+          <LoadingSpinner />
         </div>
+      ) : (
+        <div className="postWrapper">
+          <div className="profileInfoPost">
+            <div>
+              {data.author.avatar === null ? (
+                <img
+                  src={profile}
+                  alt={data.author.name}
+                  className="blankAvatar"
+                />
+              ) : (
+                <img
+                  src={data.author.avatar}
+                  alt={data.author.name}
+                  className="postAvatar"
+                />
+              )}
 
-        {data.media === null || data.media === "" ? (
-          <span></span>
-        ) : (
-          <img src={data.media} alt={data.author} className="postImage" />
-        )}
-        <div className="reactWrapper">
-          <div className="emojiWrapper">
-            {data.reactions.map((reaction) => (
-              <p key={reaction.postId} className="emoji">
-                {reaction.symbol}
-              </p>
-            ))}
-            <p>
-              {data.reactions.length < 1
-                ? `0 reactions`
-                : `${data.reactions.length}`}
-            </p>
-          </div>
-          <p>
-            {data.comments.length === 1
-              ? `${data.comments.length} comment`
-              : `${data.comments.length} comments`}
-          </p>
-        </div>
-        <h1>{data.title}</h1>
-        <p className="postBody">{data.body}</p>
-
-        {data.tags.map((tag) => (
-          <div key="" className="commentWrapper">
-            <p>{tag}</p>
-          </div>
-        ))}
-
-        <hr />
-
-        {data.comments.map((comment) => (
-          <div key={comment.id} className="commentWrapper">
-            <h3>{comment.owner}</h3>
-            <p>{comment.body}</p>
-          </div>
-        ))}
-        <div className="commentForm">
-          {submitted && <p className="success">Your message was sent</p>}
-          <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
-            {createError && <FormError>{createError}</FormError>}
-
-            <div className="loginInfo">
-              {errors.body && <FormError>{errors.body.message}</FormError>}
-              <label className="labelText">Comment</label>
-              <textarea rows="3" {...register("body")} />
+              <p className="authorName">{data.author.name}</p>
             </div>
 
-            <button className="signButton">
-              {submitting ? "Commenting..." : "Comment"}
-            </button>
-          </form>
+            {data.author.name === getName ? (
+              <Link to={`/editpost/${data.id}`}>Edit post</Link>
+            ) : (
+              <span></span>
+            )}
+          </div>
+
+          {data.media === null || data.media === "" ? (
+            <span></span>
+          ) : (
+            <img src={data.media} alt={data.author} className="postImage" />
+          )}
+          <div className="reactWrapper">
+            <div className="emojiWrapper">
+              {data.reactions.map((reaction) => (
+                <p key={reaction.postId} className="emoji">
+                  {reaction.symbol}
+                </p>
+              ))}
+              <p>
+                {data.reactions.length < 1
+                  ? `0 reactions`
+                  : `${data.reactions.length}`}
+              </p>
+            </div>
+            <p>
+              {data.comments.length === 1
+                ? `${data.comments.length} comment`
+                : `${data.comments.length} comments`}
+            </p>
+          </div>
+          <h1>{data.title}</h1>
+          <p className="postBody">{data.body}</p>
+
+          {data.tags.map((tag) => (
+            <div key="" className="commentWrapper">
+              <p>{tag}</p>
+            </div>
+          ))}
+
+          <hr />
+
+          {data.comments.map((comment) => (
+            <div key={comment.id} className="commentWrapper">
+              <h3>{comment.owner}</h3>
+              <p>{comment.body}</p>
+            </div>
+          ))}
+          <div className="commentForm">
+            {submitted && <p className="success">Your message was sent</p>}
+            <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
+              {createError && <FormError>{createError}</FormError>}
+
+              <div className="loginInfo">
+                {errors.body && <FormError>{errors.body.message}</FormError>}
+                <label className="labelText">Comment</label>
+                <textarea rows="3" {...register("body")} />
+              </div>
+
+              <button className="signButton">
+                {submitting ? "Commenting..." : "Comment"}
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
+      {error && <div>Error</div>}
     </div>
   );
 }

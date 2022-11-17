@@ -9,6 +9,7 @@ import Nav from "../layout/Nav";
 import blankProfile from "../../images/profile.jpg";
 import blankBanner from "../../images/banner.jpg";
 import { onImageError } from "../../constants/onImageError";
+import LoadingSpinner from "../layout/LoadingSpinner";
 
 export default function ProfileFeed() {
   const [data, setData] = useState([]);
@@ -38,9 +39,6 @@ export default function ProfileFeed() {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading</div>; //add a spinner
-  if (error) return <div>error</div>;
-
   return (
     <div>
       <Nav />
@@ -51,6 +49,12 @@ export default function ProfileFeed() {
         <h1>Profiles</h1>
 
         <div className="feedCardsWrapper">
+          {loading && (
+            <div className="spinner">
+              <LoadingSpinner />
+            </div>
+          )}
+          {error && <div>Error</div>}
           {data.map((profile) => (
             <Link to={`/profile/${profile.name}`}>
               <div key={profile.name} className="feedCards">
