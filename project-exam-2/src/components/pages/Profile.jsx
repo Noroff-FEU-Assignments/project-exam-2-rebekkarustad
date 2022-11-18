@@ -11,16 +11,20 @@ import { OPTIONS } from "../../constants/options";
 import { onImageError } from "../../constants/onImageError";
 import LoadingSpinner from "../layout/LoadingSpinner";
 
+const getName = window.localStorage.getItem("name");
+
 export default function Profile() {
   const [data, setData] = useState([]);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [btnState, setBtnState] = useState(false);
 
   let { name } = useParams();
 
-  const url = BASE_API + PROFILE_PATH + name;
-  const postUrl = url + `/posts`;
+  const url =
+    BASE_API + PROFILE_PATH + name + `?_following=true&_followers=true`;
+  const postUrl = BASE_API + PROFILE_PATH + name + `/posts`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +33,7 @@ export default function Profile() {
         const posts = await axios(postUrl, OPTIONS);
 
         console.log("response", response.data);
-        console.log("response", posts.data);
+        console.log("post", posts.data);
 
         setData(response.data);
         setPosts(posts.data);
@@ -42,6 +46,25 @@ export default function Profile() {
     };
     fetchData();
   }, [postUrl, url]);
+
+  async function followClick() {
+    // PUT /api/v1/social/profiles/<name>/follow
+    const getToken = window.localStorage.getItem("token");
+
+    const followUrl = url + `/follow`;
+    const fetchData = async () => {
+      const response = await axios({
+        method: "put",
+        url: followUrl,
+        headers: {
+          Authorization: `Bearer ${getToken}`,
+        },
+      });
+
+      console.log("response", response.data);
+    };
+    fetchData();
+  }
 
   return (
     <div>
@@ -80,7 +103,16 @@ export default function Profile() {
             <p>{data._count.following} following</p>
           </div>
           <div className="profileButtons">
-            <button className="profileBtn">Follow</button>
+            {data.followers.map((follower) => follower.name) === { getName } ? (
+              <button onClick={followClick} className="profileBtnWhite">
+                Unfollow
+              </button>
+            ) : (
+              <button onClick={followClick} className="profileBtn">
+                Follow
+              </button>
+            )}
+
             <button className="profileBtn">Contact</button>
           </div>
           <div className="profilePosts">
