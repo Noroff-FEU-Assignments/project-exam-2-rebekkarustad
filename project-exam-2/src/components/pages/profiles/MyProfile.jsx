@@ -90,12 +90,15 @@ export default function MyProfile() {
             {posts.map((post) => (
               <Link to={`/post/${post.id}`} key={post.id}>
                 <div className="profilePostsCards">
-                  <img
-                    src={post.media}
-                    alt={post.title}
-                    className="profileBanner"
-                  />
-
+                  {post.media === null || post.media === "" ? (
+                    <span></span>
+                  ) : (
+                    <img
+                      src={post.media}
+                      alt={post.title}
+                      className="profileBanner"
+                    />
+                  )}
                   <h2>{post.title}</h2>
                   <p>{post._count.reactions} reactions</p>
                   <p>{post._count.comments} comments</p>

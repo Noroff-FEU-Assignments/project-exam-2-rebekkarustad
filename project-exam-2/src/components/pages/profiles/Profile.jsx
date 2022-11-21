@@ -10,19 +10,24 @@ import Heading from "../../layout/Heading";
 import { OPTIONS } from "../../../constants/options";
 import { onImageError } from "../../../constants/onImageError";
 import LoadingSpinner from "../../layout/LoadingSpinner";
+import { FollowButton } from "../../ui/FollowButtons";
+import { UnfollowButton } from "../../ui/UnfollowButton";
 
-// const getName = window.localStorage.getItem("name");
+const getName = window.localStorage.getItem("name");
 
 export default function Profile() {
   const [data, setData] = useState([]);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const [btnState, setBtnState] = useState(false);
+  const [follow, setFollow] = useState([]);
+
+  const followName = follow.map((follower) => follower.name);
 
   let { name } = useParams();
 
-  const url = BASE_API + PROFILE_PATH + name;
+  const url =
+    BASE_API + PROFILE_PATH + name + `?_following=true&_followers=true`;
   const postUrl = BASE_API + PROFILE_PATH + name + `/posts`;
 
   useEffect(() => {
@@ -36,6 +41,7 @@ export default function Profile() {
 
         setData(response.data);
         setPosts(posts.data);
+        setFollow(response.data.followers);
       } catch (error) {
         console.log("error", error);
         setError("Something went wrong");
@@ -45,25 +51,6 @@ export default function Profile() {
     };
     fetchData();
   }, [postUrl, url]);
-
-  async function followClick() {
-    // PUT /api/v1/social/profiles/<name>/follow
-    const getToken = window.localStorage.getItem("token");
-
-    const followUrl = url + `/follow`;
-    const fetchData = async () => {
-      const response = await axios({
-        method: "put",
-        url: followUrl,
-        headers: {
-          Authorization: `Bearer ${getToken}`,
-        },
-      });
-
-      console.log("response", response.data);
-    };
-    fetchData();
-  }
 
   return (
     <div>
@@ -102,9 +89,11 @@ export default function Profile() {
             <p>{data._count.following} following</p>
           </div>
           <div className="profileButtons">
-            <button onClick={followClick} className="profileBtn">
-              Follow
-            </button>
+            {followName.includes(getName) ? (
+              <UnfollowButton className="unfollowBtn">Unfollow</UnfollowButton>
+            ) : (
+              <FollowButton className="profileBtn">Follow</FollowButton>
+            )}
 
             <button className="profileBtn">Contact</button>
           </div>
