@@ -5,13 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import FormError from "../forms/FormError";
-import Nav from "../layout/Nav";
-import Heading from "../layout/Heading";
-import profile from "../../images/profile.jpg";
-import { BASE_API, PROFILE_PATH } from "../../constants/api";
-import { OPTIONS } from "../../constants/options";
-import LoadingSpinner from "../layout/LoadingSpinner";
+import FormError from "../../forms/FormError";
+import Nav from "../../layout/Nav";
+import Heading from "../../layout/Heading";
+import profile from "../../../images/profile.jpg";
+import { BASE_API, PROFILE_PATH } from "../../../constants/api";
+import { OPTIONS } from "../../../constants/options";
+import LoadingSpinner from "../../layout/LoadingSpinner";
 
 const schema = yup.object().shape({
   avatar: yup.string().url("Must be a valid URL"),

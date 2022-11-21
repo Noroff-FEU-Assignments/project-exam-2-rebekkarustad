@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import { BASE_API, POST_PATH } from "../../constants/api";
-import { OPTIONS } from "../../constants/options";
+import { BASE_API, POST_PATH } from "../../../constants/api";
+import { OPTIONS } from "../../../constants/options";
 
-import Nav from "../layout/Nav";
-import Heading from "../layout/Heading";
-import FormError from "../forms/FormError";
+import Nav from "../../layout/Nav";
+import Heading from "../../layout/Heading";
+import FormError from "../../forms/FormError";
 
 const baseUrl = BASE_API + POST_PATH;
 

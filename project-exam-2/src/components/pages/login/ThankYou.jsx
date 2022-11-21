@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import Heading from "../layout/Heading";
-import Collage from "../layout/Collage";
+import Heading from "../../layout/Heading";
+import Collage from "../../layout/Collage";
 
 export default function ThankYou() {
   return (

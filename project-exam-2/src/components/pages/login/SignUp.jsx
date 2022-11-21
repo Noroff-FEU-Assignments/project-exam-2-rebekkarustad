@@ -5,11 +5,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 
-import Heading from "../layout/Heading";
-import FormError from "../forms/FormError";
-import Collage from "../layout/Collage";
-import { BASE_API, REGISTER_PATH } from "../../constants/api";
-import { NAME_REGEX, EMAIL_REGEX } from "../../constants/regex";
+import Heading from "../../layout/Heading";
+import FormError from "../../forms/FormError";
+import Collage from "../../layout/Collage";
+import { BASE_API, REGISTER_PATH } from "../../../constants/api";
+import { NAME_REGEX, EMAIL_REGEX } from "../../../constants/regex";
 
 const url = BASE_API + REGISTER_PATH;
 

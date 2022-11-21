@@ -5,10 +5,10 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 
-import Heading from "../layout/Heading";
-import FormError from "../forms/FormError";
-import Collage from "../layout/Collage";
-import { BASE_API, LOGIN_PATH } from "../../constants/api";
+import Heading from "../../layout/Heading";
+import FormError from "../../forms/FormError";
+import Collage from "../../layout/Collage";
+import { BASE_API, LOGIN_PATH } from "../../../constants/api";
 
 const url = BASE_API + LOGIN_PATH;
 

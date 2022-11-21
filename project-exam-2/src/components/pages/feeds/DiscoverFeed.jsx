@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { FULL_API } from "../../constants/api";
+import { FULL_API } from "../../../constants/api";
 import { Link } from "react-router-dom";
-import { OPTIONS } from "../../constants/options";
-import { onImageError } from "../../constants/onImageError";
 
-import Nav from "../layout/Nav";
-import profile from "../../images/profile.jpg";
-import LoadingSpinner from "../layout/LoadingSpinner";
+import { OPTIONS } from "../../../constants/options";
+import { onImageError } from "../../../constants/onImageError";
+
+import Nav from "../../layout/Nav";
+import profile from "../../../images/profile.jpg";
+import LoadingSpinner from "../../layout/LoadingSpinner";
 
 var url = FULL_API;
 

@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import Nav from "../layout/Nav";
-import profile from "../../images/profile.jpg";
-import { BASE_API, PROFILE_PATH } from "../../constants/api";
-import Heading from "../layout/Heading";
-import { OPTIONS } from "../../constants/options";
-import { onImageError } from "../../constants/onImageError";
-import LoadingSpinner from "../layout/LoadingSpinner";
+import Nav from "../../layout/Nav";
+import profile from "../../../images/profile.jpg";
+import { BASE_API, PROFILE_PATH } from "../../../constants/api";
+import Heading from "../../layout/Heading";
+import { OPTIONS } from "../../../constants/options";
+import { onImageError } from "../../../constants/onImageError";
+import LoadingSpinner from "../../layout/LoadingSpinner";
 
 const getName = window.localStorage.getItem("name");
 

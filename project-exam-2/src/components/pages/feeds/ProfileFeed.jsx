@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { BASE_API, PROFILE_PATH } from "../../constants/api";
-import { OPTIONS } from "../../constants/options";
+import { BASE_API, PROFILE_PATH } from "../../../constants/api";
+import { OPTIONS } from "../../../constants/options";
 
-import Nav from "../layout/Nav";
-import blankProfile from "../../images/profile.jpg";
-import blankBanner from "../../images/banner.jpg";
-import { onImageError } from "../../constants/onImageError";
-import LoadingSpinner from "../layout/LoadingSpinner";
+import Nav from "../../layout/Nav";
+import blankProfile from "../../../images/profile.jpg";
+import blankBanner from "../../../images/banner.jpg";
+import { onImageError } from "../../../constants/onImageError";
+import LoadingSpinner from "../../layout/LoadingSpinner";
 
 export default function ProfileFeed() {
   const [data, setData] = useState([]);

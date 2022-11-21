@@ -1,4 +1,3 @@
-import Nav from "../layout/Nav";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import * as yup from "yup";
@@ -6,12 +5,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 
-import { BASE_API, POST_PATH, FLAG_PATH } from "../../constants/api";
+import { BASE_API, POST_PATH, FLAG_PATH } from "../../../constants/api";
 
-import profile from "../../images/profile.jpg";
-import FormError from "../forms/FormError";
-import { OPTIONS } from "../../constants/options";
-import LoadingSpinner from "../layout/LoadingSpinner";
+import Nav from "../../layout/Nav";
+import profile from "../../../images/profile.jpg";
+import FormError from "../../forms/FormError";
+import { OPTIONS } from "../../../constants/options";
+import LoadingSpinner from "../../layout/LoadingSpinner";
 
 const schema = yup.object().shape({
   body: yup.string().required("Please enter a comment"),

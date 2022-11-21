@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 
-import { BASE_API, POST_PATH, FLAG_PATH } from "../../constants/api";
-import FormError from "../forms/FormError";
-import Nav from "../layout/Nav";
-import Heading from "../layout/Heading";
-import { OPTIONS } from "../../constants/options";
-import LoadingSpinner from "../layout/LoadingSpinner";
+import { BASE_API, POST_PATH, FLAG_PATH } from "../../../constants/api";
+import FormError from "../../forms/FormError";
+import Nav from "../../layout/Nav";
+import Heading from "../../layout/Heading";
+import { OPTIONS } from "../../../constants/options";
+import LoadingSpinner from "../../layout/LoadingSpinner";
 
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a title"),
