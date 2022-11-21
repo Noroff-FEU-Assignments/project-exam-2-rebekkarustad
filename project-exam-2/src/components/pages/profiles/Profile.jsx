@@ -11,19 +11,18 @@ import { OPTIONS } from "../../../constants/options";
 import { onImageError } from "../../../constants/onImageError";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 
-const getName = window.localStorage.getItem("name");
+// const getName = window.localStorage.getItem("name");
 
 export default function Profile() {
   const [data, setData] = useState([]);
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [btnState, setBtnState] = useState(false);
+  // const [btnState, setBtnState] = useState(false);
 
   let { name } = useParams();
 
-  const url =
-    BASE_API + PROFILE_PATH + name + `?_following=true&_followers=true`;
+  const url = BASE_API + PROFILE_PATH + name;
   const postUrl = BASE_API + PROFILE_PATH + name + `/posts`;
 
   useEffect(() => {
@@ -103,15 +102,9 @@ export default function Profile() {
             <p>{data._count.following} following</p>
           </div>
           <div className="profileButtons">
-            {data.followers.map((follower) => follower.name) === { getName } ? (
-              <button onClick={followClick} className="profileBtnWhite">
-                Unfollow
-              </button>
-            ) : (
-              <button onClick={followClick} className="profileBtn">
-                Follow
-              </button>
-            )}
+            <button onClick={followClick} className="profileBtn">
+              Follow
+            </button>
 
             <button className="profileBtn">Contact</button>
           </div>
