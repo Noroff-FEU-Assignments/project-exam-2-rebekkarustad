@@ -8,11 +8,10 @@ import axios from "axios";
 import { BASE_API, POST_PATH, FLAG_PATH } from "../../../constants/api";
 
 import Nav from "../../layout/Nav";
-import profile from "../../../images/profile.jpg";
 import FormError from "../../forms/FormError";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
-import Emoji from "../../ui/Emoji";
+import PostDetails from "./PostDetails";
 
 const schema = yup.object().shape({
   body: yup.string(),
@@ -122,58 +121,24 @@ export default function PostPage() {
         </div>
       ) : (
         <div className="postWrapper">
-          <div className="profileInfoPost">
-            <div>
-              {data.author.avatar === null ? (
-                <img
-                  src={profile}
-                  alt={data.author.name}
-                  className="blankAvatar"
-                />
-              ) : (
-                <img
-                  src={data.author.avatar}
-                  alt={data.author.name}
-                  className="postAvatar"
-                />
-              )}
-              <Link to={`/profile/${data.author.name}`} className="authorName">
-                {data.author.name}
-              </Link>
-            </div>
-
-            {data.author.name === getName ? (
-              <Link to={`/editpost/${data.id}`}>Edit post</Link>
-            ) : (
-              <span></span>
-            )}
-          </div>
-
-          {data.media === null || data.media === "" ? (
-            <span></span>
-          ) : (
-            <img src={data.media} alt={data.author} className="postImage" />
-          )}
-          <div className="reactWrapper">
-            <Emoji data={data} />
-            <p>
-              {data.comments.length === 1
-                ? `${data.comments.length} comment`
-                : `${data.comments.length} comments`}
-            </p>
-          </div>
-          <h1>{data.title}</h1>
-          <p className="postBody">{data.body}</p>
-
-          <ul className="tagWrapper">
-            {data.tags.map((tag, i) => (
-              <li key={i} className="tags">
-                {tag}
-              </li>
-            ))}
-          </ul>
+          <PostDetails
+            id={data.id}
+            author={data.author}
+            title={data.title}
+            media={data.media}
+            body={data.body}
+            comments={data.comments}
+            reactions={data.reactions}
+            tags={data.tags}
+          />
 
           <hr />
+
+          <h2>
+            {data.comments.length === 1
+              ? `${data.comments.length} comment`
+              : `${data.comments.length} comments`}
+          </h2>
 
           {data.comments.map((comment) => (
             <div key={comment.id} className="commentWrapper">
@@ -202,6 +167,7 @@ export default function PostPage() {
               )}
             </div>
           ))}
+
           <div className="commentForm">
             {submitted && <p className="success">Your message was sent</p>}
             <form className="createForm" onSubmit={handleSubmit(onSubmit)}>

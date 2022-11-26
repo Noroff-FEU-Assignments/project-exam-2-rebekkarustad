@@ -44,15 +44,22 @@ hr {
 
 .profileInfoPost {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   grid-column: 1 / 3;
+  gap: 20px;
+}
 
-  div {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+.authorInfo {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+}
+
+.editPost {
+  justify-self: end;
+  align-self: center;
 }
 
 .tagWrapper {

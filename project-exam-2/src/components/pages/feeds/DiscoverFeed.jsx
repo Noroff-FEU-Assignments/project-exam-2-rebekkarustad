@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import PostList from "../posts/PostList";
+import PostCard from "../posts/PostCard";
 
 import Nav from "../../layout/Nav";
 import { FULL_API } from "../../../constants/api";
@@ -55,7 +55,23 @@ export default function DiscoverFeed() {
           Profiles
         </Link>
 
-        <PostList postData={postData} />
+        <div className="feedCard">
+          {postData.map((data, index) => {
+            return (
+              <PostCard
+                key={index}
+                id={data.id}
+                author={data.author}
+                title={data.title}
+                body={data.body}
+                media={data.media}
+                reactions={data.reactions}
+                comments={data.comments}
+              />
+            );
+          })}
+        </div>
+
         {loading && <LoadingSpinner />}
       </div>
     </div>

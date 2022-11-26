@@ -30,12 +30,12 @@ export default function Emoji({ data }) {
 
   return (
     <div className="emojiWrapper">
-      {data.reactions.map((reaction, i) => (
+      {data.map((reaction, i) => (
         <p key={i} className="emoji">
           {reaction.symbol}
         </p>
       ))}
-      {data.reactions.length < 1 && <p>`0 reactions`</p>}
+      {data.length < 1 && <p>`0 reactions`</p>}
       <button className="reactButton" onClick={toggleEmojiPanel}>
         React
       </button>

@@ -31,7 +31,7 @@ span {
 }
 .postImage {
   width: 100%;
-  grid-column: 1 / 3;
+  grid-column: 1 / 4;
 }
 .profileButton {
   background-color: $color-light;
@@ -97,7 +97,7 @@ span {
 .reactWrapper {
   display: flex;
   flex-direction: row;
-
+  width: 100%;
   gap: 10px;
   grid-column: 1 / 3;
   justify-content: space-between;
