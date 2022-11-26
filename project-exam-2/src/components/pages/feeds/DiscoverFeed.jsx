@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import PostList from "../posts/PostList";
 
 import Nav from "../../layout/Nav";
 import { FULL_API } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
-import axios from "axios";
+import LoadingSpinner from "../../layout/LoadingSpinner";
 
 export default function DiscoverFeed() {
   const [postData, setPostData] = useState([]);
@@ -55,6 +56,7 @@ export default function DiscoverFeed() {
         </Link>
 
         <PostList postData={postData} />
+        {loading && <LoadingSpinner />}
       </div>
     </div>
   );

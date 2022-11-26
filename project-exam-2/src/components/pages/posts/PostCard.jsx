@@ -51,12 +51,16 @@ export default function PostCard({
             </div>
           ))}
 
-          <p>{reactions.length < 1 ? `0 reactions` : `${reactions.length}`}</p>
+          <p className="reactNumber">
+            {reactions.length < 1 ? `0 reactions` : `${reactions.length}`}
+          </p>
         </div>
-        <p>
-          {comments.length === 1
-            ? `${comments.length} comment`
-            : `${comments.length} comments`}
+        <p className="commentInfo">
+          <Link to={`/post/${id}`}>
+            {comments.length === 1
+              ? `${comments.length} comment`
+              : `${comments.length} comments`}
+          </Link>
         </p>
       </div>
     </div>

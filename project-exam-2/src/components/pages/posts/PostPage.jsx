@@ -4,7 +4,6 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import EmojiPicker from "emoji-picker-react";
 
 import { BASE_API, POST_PATH, FLAG_PATH } from "../../../constants/api";
 
@@ -13,6 +12,7 @@ import profile from "../../../images/profile.jpg";
 import FormError from "../../forms/FormError";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
+import Emoji from "../../ui/Emoji";
 
 const schema = yup.object().shape({
   body: yup.string(),
@@ -25,7 +25,6 @@ export default function PostPage() {
   const [submitting, setSubmitting] = useState(false);
   const [createError, setCreateError] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-  const [showEmojiPanel, setShowEmojiPanel] = useState(false);
   const [replyToggle, setReplyToggle] = useState(false);
 
   let { id } = useParams();
@@ -94,25 +93,6 @@ export default function PostPage() {
 
   console.log(data);
 
-  function toggleEmojiPanel() {
-    setShowEmojiPanel(!showEmojiPanel);
-  }
-
-  async function onClick(emoji) {
-    const getToken = window.localStorage.getItem("token");
-    const emojiUrl = BASE_API + POST_PATH + `/${id}/react/${emoji.emoji}`;
-
-    await axios({
-      method: "put",
-      url: emojiUrl,
-      data: emoji,
-      headers: {
-        Authorization: `Bearer ${getToken}`,
-      },
-    });
-    setShowEmojiPanel(!showEmojiPanel);
-  }
-
   function reply() {
     console.log("hello");
     setReplyToggle(!replyToggle);
@@ -157,8 +137,9 @@ export default function PostPage() {
                   className="postAvatar"
                 />
               )}
-
-              <p className="authorName">{data.author.name}</p>
+              <Link to={`/profile/${data.author.name}`} className="authorName">
+                {data.author.name}
+              </Link>
             </div>
 
             {data.author.name === getName ? (
@@ -174,20 +155,7 @@ export default function PostPage() {
             <img src={data.media} alt={data.author} className="postImage" />
           )}
           <div className="reactWrapper">
-            <div className="emojiWrapper">
-              <button onClick={toggleEmojiPanel}>React</button>
-              {showEmojiPanel && <EmojiPicker onEmojiClick={onClick} />}
-              {data.reactions.map((reaction, i) => (
-                <p key={i} className="emoji">
-                  {reaction.symbol}
-                </p>
-              ))}
-              <p>
-                {data.reactions.length < 1
-                  ? `0 reactions`
-                  : `${data.reactions.length}`}
-              </p>
-            </div>
+            <Emoji data={data} />
             <p>
               {data.comments.length === 1
                 ? `${data.comments.length} comment`

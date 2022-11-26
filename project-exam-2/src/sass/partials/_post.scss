@@ -18,11 +18,28 @@ hr {
 }
 
 .emojiWrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   gap: 10px;
+  grid-template-columns: auto repeat(5, 1fr);
+}
+
+.EmojiPickerReact {
+  grid-column: 1 / 7;
+  grid-row: 2 / 3;
+  position: absolute !important;
+  margin-top: 45px;
+  z-index: 10;
+}
+
+.reactButton {
+  background-color: $color-light;
+  color: $color-primary;
+  border: none;
+  font-size: 1.2rem;
+  margin-top: 5px;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .profileInfoPost {
