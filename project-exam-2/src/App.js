@@ -14,8 +14,6 @@ import PostPage from "./components/pages/posts/PostPage";
 import CreatePost from "./components/pages/posts/CreatePost";
 import EditPost from "./components/pages/posts/EditPost";
 
-import PostFeed from "./components/pages/feeds/PostFeed";
-
 function App() {
   return (
     <div className="App">
@@ -32,7 +30,6 @@ function App() {
         <Route path="/profile/:name" element={<Profile />} />
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/editpost/:id" element={<EditPost />} />
-        <Route path="/postfeed" element={<PostFeed />} />
       </Routes>
     </div>
   );

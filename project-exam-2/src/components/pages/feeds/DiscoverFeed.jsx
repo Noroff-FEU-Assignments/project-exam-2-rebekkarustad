@@ -1,65 +1,51 @@
 import { useState, useEffect } from "react";
-import { FULL_API } from "../../../constants/api";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
-import { OPTIONS } from "../../../constants/options";
-import { onImageError } from "../../../constants/onImageError";
+import PostList from "../posts/PostList";
 
 import Nav from "../../layout/Nav";
-import profile from "../../../images/profile.jpg";
-import LoadingSpinner from "../../layout/LoadingSpinner";
-
-var url = FULL_API;
+import { FULL_API } from "../../../constants/api";
+import { OPTIONS } from "../../../constants/options";
+import axios from "axios";
 
 export default function DiscoverFeed() {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [srollLoading, setScrollLoading] = useState(false);
+  const [postData, setPostData] = useState([]);
   const [offset, setOffset] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const limit = 3;
+  const limit = 5;
 
-  url = url + `&limit=${limit}&offset=${offset}`;
-
-  console.log(url);
+  const url = FULL_API + `&limit=${limit}&offset=${offset}`;
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios(url, OPTIONS);
-        console.log(response.data);
+      const response = await axios(url, OPTIONS);
 
-        setData((prev) => [...prev, ...response.data]);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
+      setPostData((prev) => {
+        return [...prev, ...response.data];
+      });
+      setLoading(false);
     };
-
     fetchData();
-  }, [loading]);
+  }, [url]);
 
-  const handleScroll = () => {
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = async () => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
       document.documentElement.scrollHeight
     ) {
-      setScrollLoading(true);
-      setOffset((prev) => prev + 10);
+      setLoading(true);
+      setOffset((prev) => prev + 5);
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
-
   return (
-    <div className="feedPage">
+    <div>
       <Nav />
       <div className="feedWrapper">
         <h1>Explore</h1>
@@ -68,80 +54,7 @@ export default function DiscoverFeed() {
           Profiles
         </Link>
 
-        <div className="feedCard">
-          {loading && (
-            <div className="spinner">
-              <LoadingSpinner />
-            </div>
-          )}
-          {error && <div>Error</div>}
-
-          {data.map((post, i) => (
-            <div key={i} className="postDetail">
-              <div className="profileInfo">
-                {post.author.avatar === null ? (
-                  <img
-                    src={profile}
-                    alt={post.author.name}
-                    className="blankAvatar"
-                  />
-                ) : (
-                  <img
-                    src={post.author.avatar}
-                    alt={post.author.name}
-                    className="postAvatar"
-                    onError={onImageError}
-                  />
-                )}
-
-                <p className="authorName"></p>
-                <Link
-                  to={`/profile/${post.author.name}`}
-                  className="authorName"
-                >
-                  {post.author.name}
-                </Link>
-              </div>
-
-              {post.media === null || post.media === "" ? (
-                <span></span>
-              ) : (
-                <img src={post.media} alt={post.title} className="postImage" />
-              )}
-              <div className="postHeading">
-                <Link to={`/post/${post.id}`}>
-                  <h2>{post.title}</h2>
-                </Link>
-              </div>
-              <p className="postBody">{post.body}</p>
-              <div className="replyWrapper">
-                <div className="reactWrapper">
-                  {post.reactions.map((reaction, i) => (
-                    <div key={i}>
-                      <p className="emoji">{reaction.symbol}</p>
-                    </div>
-                  ))}
-
-                  <p>
-                    {post.reactions.length < 1
-                      ? `0 reactions`
-                      : `${post.reactions.length}`}
-                  </p>
-                </div>
-                <p>
-                  {post.comments.length === 1
-                    ? `${post.comments.length} comment`
-                    : `${post.comments.length} comments`}
-                </p>
-              </div>
-            </div>
-          ))}
-          {srollLoading && (
-            <div className="spinner">
-              <LoadingSpinner />
-            </div>
-          )}
-        </div>
+        <PostList postData={postData} />
       </div>
     </div>
   );
