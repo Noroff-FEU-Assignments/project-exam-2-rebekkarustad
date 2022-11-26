@@ -41,11 +41,15 @@ export default function CreatePost() {
     console.log(info);
 
     try {
+      const getToken = window.localStorage.getItem("token");
+
       const response = await axios({
         method: "post",
         url: baseUrl,
         data: info,
-        headers: OPTIONS,
+        headers: {
+          Authorization: `Bearer ${getToken}`,
+        },
       });
       console.log("response", response.data);
       history(`/post/${response.data.id}`);

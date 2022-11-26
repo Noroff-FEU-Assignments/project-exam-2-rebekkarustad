@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 
@@ -20,6 +20,7 @@ const schema = yup.object().shape({
 });
 
 export default function EditPost() {
+  const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -35,6 +36,7 @@ export default function EditPost() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -46,13 +48,13 @@ export default function EditPost() {
       try {
         const response = await axios(url, OPTIONS);
         console.log(response.data);
+        console.log(JSON.stringify(response.data.tags));
         reset({
           title: response.data.title,
           body: response.data.body,
-          tags: response.data.tags,
           media: response.data.media,
         });
-
+        setData(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -62,6 +64,16 @@ export default function EditPost() {
 
     fetchData();
   }, [reset, url]);
+
+  const ParseTextarea = ({ onChange }) => {
+    const handleChange = (e) => {
+      const value = e.target.value;
+
+      onChange(value.split(","));
+    };
+
+    return <input onChange={handleChange} defaultValue={data.tags} />;
+  };
 
   async function onSubmit(data) {
     setSubmitting(true);
@@ -138,9 +150,16 @@ export default function EditPost() {
               </div>
 
               <div className="loginInfo">
-                {errors.tags && <FormError>{errors.tags.message}</FormError>}
                 <label className="labelText">Tags</label>
-                <input {...register("tags")} />
+
+                <Controller
+                  name="tags"
+                  control={control}
+                  render={({ field }) => {
+                    const { ref, ...nonRefField } = field;
+                    return <ParseTextarea {...nonRefField} />;
+                  }}
+                />
               </div>
 
               <div className="loginInfo">

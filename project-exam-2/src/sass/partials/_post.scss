@@ -37,3 +37,20 @@ hr {
     gap: 15px;
   }
 }
+
+.tagWrapper {
+  padding-inline-start: 0;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.tags {
+  &:after {
+    content: ",";
+  }
+  &:last-child {
+    &:after {
+      content: "";
+    }
+  }
+}
