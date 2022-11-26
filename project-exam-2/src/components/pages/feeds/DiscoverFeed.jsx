@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FULL_API } from "../../../constants/api";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import { OPTIONS } from "../../../constants/options";
 import { onImageError } from "../../../constants/onImageError";
@@ -15,8 +16,10 @@ export default function DiscoverFeed() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [limit] = useState(50);
-  const [offset] = useState(0);
+  const [srollLoading, setScrollLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+
+  const limit = 3;
 
   url = url + `&limit=${limit}&offset=${offset}`;
 
@@ -25,10 +28,10 @@ export default function DiscoverFeed() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url, OPTIONS);
-        const data = await response.json();
+        const response = await axios(url, OPTIONS);
+        console.log(response.data);
 
-        setData(data);
+        setData((prev) => [...prev, ...response.data]);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -37,9 +40,23 @@ export default function DiscoverFeed() {
     };
 
     fetchData();
-  }, []);
+  }, [loading]);
 
-  console.log(data);
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setScrollLoading(true);
+      setOffset((prev) => prev + 10);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
 
   return (
     <div className="feedPage">
@@ -59,8 +76,8 @@ export default function DiscoverFeed() {
           )}
           {error && <div>Error</div>}
 
-          {data.map((post) => (
-            <div key={post.id} className="postDetail">
+          {data.map((post, i) => (
+            <div key={i} className="postDetail">
               <div className="profileInfo">
                 {post.author.avatar === null ? (
                   <img
@@ -119,6 +136,11 @@ export default function DiscoverFeed() {
               </div>
             </div>
           ))}
+          {srollLoading && (
+            <div className="spinner">
+              <LoadingSpinner />
+            </div>
+          )}
         </div>
       </div>
     </div>

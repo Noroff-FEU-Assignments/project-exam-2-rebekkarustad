@@ -26,8 +26,12 @@ p {
 
 a {
   color: $color-links;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
+  &:hover {
+    color: $color-primary;
+    text-decoration: underline;
+  }
 }
 
 button {
