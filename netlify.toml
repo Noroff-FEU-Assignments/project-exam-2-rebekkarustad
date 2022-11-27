@@ -1,2 +1,3 @@
 [build]
-  base = "project-exam-2/"
+    command = "npm run build"
+    base = "project-exam-2/"
