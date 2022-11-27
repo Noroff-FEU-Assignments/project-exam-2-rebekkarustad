@@ -7,13 +7,13 @@ const getToken = window.localStorage.getItem("token");
 
 export function UnfollowButton({ children, type, className, onClick }) {
   let { name } = useParams();
-  const followUrl = BASE_API + PROFILE_PATH + name + `/unfollow`;
+  const url = BASE_API + PROFILE_PATH + name + `/unfollow`;
 
   async function Follow() {
     const putData = async () => {
       const response = await axios({
         method: "put",
-        url: followUrl,
+        url: url,
         headers: {
           Authorization: `Bearer ${getToken}`,
         },
