@@ -11,6 +11,7 @@ import Nav from "../../layout/Nav";
 import Heading from "../../layout/Heading";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
+import UpdateSuccess from "../../messages/UpdateSuccess";
 
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a title"),
@@ -25,6 +26,7 @@ export default function EditPost() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [createError, setCreateError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const history = useNavigate();
 
@@ -95,7 +97,7 @@ export default function EditPost() {
         },
       });
       console.log("response", response.data);
-      // history(`/post/${response.data.id}`);
+      setSuccess(true);
     } catch (error) {
       console.log("error", error);
       setCreateError("Something went wrong");
@@ -140,6 +142,7 @@ export default function EditPost() {
         ) : (
           <div className="formWrapper">
             <Heading title="Edit post" />
+            {success && <UpdateSuccess id={data.id} />}
             <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
               {createError && <FormError>{createError}</FormError>}
 

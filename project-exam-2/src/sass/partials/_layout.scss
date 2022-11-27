@@ -42,3 +42,23 @@ button {
 img {
   object-fit: cover;
 }
+
+.error {
+  background-color: $color-error;
+  padding: 10px;
+  grid-column: -1/1;
+}
+
+.success {
+  background-color: $color-success;
+  padding: 10px;
+  grid-column: -1/1;
+  a {
+    color: $color-primary;
+    text-decoration: underline;
+    &:hover {
+      color: $color-text;
+      text-decoration: none;
+    }
+  }
+}

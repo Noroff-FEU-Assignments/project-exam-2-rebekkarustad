@@ -8,7 +8,7 @@ import profile from "../../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../../constants/api";
 import Heading from "../../layout/Heading";
 import { OPTIONS } from "../../../constants/options";
-import { onImageError } from "../../../constants/onImageError";
+import { onImageError, onBannerError } from "../../../constants/onImageError";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 import { FollowButton } from "../../ui/FollowButtons";
 import { UnfollowButton } from "../../ui/UnfollowButton";
@@ -69,6 +69,7 @@ export default function Profile() {
                 src={data.banner}
                 alt={data.author}
                 className="profileBanner"
+                onError={onBannerError}
               />
             )}
 

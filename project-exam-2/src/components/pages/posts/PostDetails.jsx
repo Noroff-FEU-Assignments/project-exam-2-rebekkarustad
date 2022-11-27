@@ -11,7 +11,6 @@ export default function PostDetails({
   media,
   title,
   body,
-  comments,
   reactions,
   tags,
 }) {
@@ -48,7 +47,7 @@ export default function PostDetails({
       <ul className="tagWrapper">
         {tags.map((tag, i) => (
           <li key={i} className="tags">
-            {tag}
+            Tags: {tag}
           </li>
         ))}
       </ul>

@@ -20,3 +20,6 @@ export default function ThankYou() {
     </div>
   );
 }
+
+// thankYouWrapper = register_thanks-wrapper
+// thankYouText = register__thanks-text

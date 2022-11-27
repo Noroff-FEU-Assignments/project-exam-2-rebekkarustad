@@ -13,7 +13,7 @@ export default function DiscoverFeed() {
   const [postData, setPostData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   const limit = 5;
 
