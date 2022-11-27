@@ -17,7 +17,7 @@ export default function Comments({
   return (
     <div className="comment">
       <div className="comment-image-container">
-        {/* <img src={userIcon} alt="profile" /> */}
+        <img src={comment.author.avatar} alt="profile" />
       </div>
       <div className="comment-right-part">
         <div className="comment-content">
@@ -43,6 +43,7 @@ export default function Comments({
             handleSubmit={(text) => addComment(text, replyId)}
           />
         )}
+
         {replies.length > 0 && (
           <div className="replies">
             {replies.map((reply) => (

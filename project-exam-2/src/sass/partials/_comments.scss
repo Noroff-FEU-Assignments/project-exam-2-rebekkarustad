@@ -55,7 +55,10 @@
 }
 
 .comment-image-container img {
-  border-radius: 50px;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
 }
 
 .comment-right-part {

@@ -91,6 +91,11 @@ export default function PostPage() {
             />
 
             <hr />
+            <h2>
+              {backendComments.length === 1
+                ? `${backendComments.length} comment`
+                : `${backendComments.length} comments`}
+            </h2>
             <div className="commentWrapper">
               {rootComments.map((rootComment) => (
                 <Comments
