@@ -11,6 +11,7 @@ export default function Emoji({ data }) {
   function toggleEmojiPanel() {
     setShowEmojiPanel(!showEmojiPanel);
   }
+
   let { id } = useParams();
 
   async function onClick(emoji) {

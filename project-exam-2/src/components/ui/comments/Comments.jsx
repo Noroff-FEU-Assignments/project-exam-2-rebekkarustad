@@ -1,6 +1,9 @@
 import Moment from "react-moment";
 import CommentForm from "./CommentForm";
 
+import profile from "../../../images/profile.jpg";
+import { onImageError } from "../../../constants/onImageError";
+
 export default function Comments({
   comment,
   replies,
@@ -14,27 +17,40 @@ export default function Comments({
     activeComment.id === comment.id &&
     activeComment.type === "replying";
   const replyId = replyToId ? replyToId : comment.id;
+
+  function toggleReplyPannel() {
+    setActiveComment({ id: comment.id, type: "replying" });
+  }
+
   return (
     <div className="comment">
       <div className="comment-image-container">
-        <img src={comment.author.avatar} alt="profile" />
+        {comment.author.avatar === null ? (
+          <img
+            src={profile}
+            alt={comment.author.name}
+            className="blankAvatar"
+          />
+        ) : (
+          <img
+            src={comment.author.avatar}
+            alt={comment.author.name}
+            className="postAvatar"
+            onError={onImageError}
+          />
+        )}
       </div>
       <div className="comment-right-part">
         <div className="comment-content">
           <div className="comment-author">{comment.owner}</div>
+          <div className="comment-text">{comment.body}</div>
           <div className="comment-date">
-            <Moment format="L">{comment.created}</Moment>
+            <Moment format="MMMM Do, YYYY">{comment.created}</Moment>
           </div>
-        </div>
-        <div className="comment-text">{comment.body}</div>
-        <div className="comment-actions">
-          <div
-            className="comment-action"
-            onClick={() =>
-              setActiveComment({ id: comment.id, type: "replying" })
-            }
-          >
-            Reply
+          <div className="comment-actions">
+            <div className="comment-action" onClick={toggleReplyPannel}>
+              Reply
+            </div>
           </div>
         </div>
         {isReplying && (
@@ -65,12 +81,6 @@ export default function Comments({
 }
 
 /*
-<h2>
-    {data.comments.length === 1
-    ? `${data.comments.length} comment`
-    : `${data.comments.length} comments`}
-</h2>
-
 {data.comments.map((comment) => (
 <div key={comment.id} className="commentWrapper">
     <h3>{comment.owner}</h3>
