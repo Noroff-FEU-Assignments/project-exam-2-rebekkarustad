@@ -62,21 +62,18 @@ export default function ProfileFeed() {
     <div>
       <Nav />
       <FeedToggle />
-
-      <div className="feedWrapper">
-        <div className="feedCardsWrapper">
-          {profileData.map((data, index) => {
-            return (
-              <ProfileCard
-                key={index}
-                name={data.name}
-                avatar={data.avatar}
-                banner={data.banner}
-                followers={data._count.followers}
-              />
-            );
-          })}
-        </div>
+      <div className="feeds__container feed__container--profiles">
+        {profileData.map((data, index) => {
+          return (
+            <ProfileCard
+              key={index}
+              name={data.name}
+              avatar={data.avatar}
+              banner={data.banner}
+              followers={data._count.followers}
+            />
+          );
+        })}
         {loading && <LoadingSpinner />}
         {error && <div>Error...</div>}
       </div>

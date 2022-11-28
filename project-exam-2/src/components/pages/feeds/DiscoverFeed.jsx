@@ -16,7 +16,7 @@ export default function DiscoverFeed() {
   const [loading, setLoading] = useState(true);
   const [activeClass, setActiveClass] = useState(null);
 
-  // const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
 
   const limit = 5;
 
@@ -48,39 +48,28 @@ export default function DiscoverFeed() {
     }
   };
 
-  // let location = useLocation();
-  // console.log(location.pathname);
-
-  // useEffect(() => {
-  //   if (location.pathname === "/feed") {
-  //     setActiveClass("feed__button-active");
-  //   }
-  // }, [location.pathname]);
-
   return (
     <div>
       <Nav />
       <FeedToggle className={activeClass} />
 
-      <div className="feedWrapper">
-        <div className="feedCard">
-          {postData.map((data, index) => {
-            return (
-              <PostCard
-                key={index}
-                id={data.id}
-                author={data.author}
-                title={data.title}
-                body={data.body}
-                media={data.media}
-                reactions={data.reactions}
-                comments={data.comments}
-              />
-            );
-          })}
-        </div>
-
+      <div className="feeds__container feed__container--posts">
+        {postData.map((data, index) => {
+          return (
+            <PostCard
+              key={index}
+              id={data.id}
+              author={data.author}
+              title={data.title}
+              body={data.body}
+              media={data.media}
+              reactions={data.reactions}
+              comments={data.comments}
+            />
+          );
+        })}
         {loading && <LoadingSpinner />}
+        {error && <div>Error...</div>}
       </div>
     </div>
   );

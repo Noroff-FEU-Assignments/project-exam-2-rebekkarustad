@@ -45,7 +45,7 @@ export default function PostDetails({
         <Emoji data={reactions} />
       </div>
       <h1>{title}</h1>
-      <p className="postBody">{body}</p>
+      <p>{body}</p>
       <ul className="tagWrapper">
         {tags.map((tag, i) => (
           <li key={i} className="tags">
