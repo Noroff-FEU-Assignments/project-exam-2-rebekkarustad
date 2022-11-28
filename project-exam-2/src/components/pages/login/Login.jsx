@@ -51,30 +51,30 @@ function Login() {
   }
 
   return (
-    <div className="loginWrapper">
-      <div className="formWrapper">
+    <div className="register__container">
+      <div className="form__container">
         <Heading title="Welcome back" />
         <h2>Sign in to access the fun stuff</h2>
-        <form className="signForm" onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           {loginError && <FormError>{loginError}</FormError>}
-          <div className="loginInfo">
+          <div className="form__components">
             {errors.email && <FormError>{errors.email.message}</FormError>}
-            <label className="labelText">Email*</label>
+            <label>Email</label>
             <input {...register("email")} />
           </div>
-          <div className="loginInfo">
+          <div className="form__components">
             {errors.password && (
               <FormError>{errors.password.message}</FormError>
             )}
-            <label className="labelText">Password*</label>
+            <label>Password</label>
             <input type="password" {...register("password")} />
           </div>
 
-          <button className="signButton">
-            {submitting ? "Signing in..." : "Sign up"}
+          <button className="button button-sml button-drk">
+            {submitting ? "Logging in..." : "Login"}
           </button>
 
-          <p className="underText">
+          <p>
             Don't have an account? <Link to="/signUp">Register here!</Link>
           </p>
         </form>

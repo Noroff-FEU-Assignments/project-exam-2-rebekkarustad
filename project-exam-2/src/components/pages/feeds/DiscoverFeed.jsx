@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 import PostCard from "../posts/PostCard";
 
 import Nav from "../../layout/Nav";
+import FeedToggle from "../../layout/FeedToggle";
 import { FULL_API } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
@@ -13,6 +14,8 @@ export default function DiscoverFeed() {
   const [postData, setPostData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [activeClass, setActiveClass] = useState(null);
+
   // const [error, setError] = useState(null);
 
   const limit = 5;
@@ -45,16 +48,21 @@ export default function DiscoverFeed() {
     }
   };
 
+  // let location = useLocation();
+  // console.log(location.pathname);
+
+  // useEffect(() => {
+  //   if (location.pathname === "/feed") {
+  //     setActiveClass("feed__button-active");
+  //   }
+  // }, [location.pathname]);
+
   return (
     <div>
       <Nav />
+      <FeedToggle className={activeClass} />
+
       <div className="feedWrapper">
-        <h1>Explore</h1>
-
-        <Link to="/profile" className="profileButton">
-          Profiles
-        </Link>
-
         <div className="feedCard">
           {postData.map((data, index) => {
             return (

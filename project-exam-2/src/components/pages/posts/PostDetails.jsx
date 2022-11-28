@@ -32,7 +32,9 @@ export default function PostDetails({
         </Link>
         <div className="editPost">
           {author.name === getName && (
-            <Link to={`/editpost/${id}`}>Edit post</Link>
+            <Link to={`/editpost/${id}`}>
+              <button className="button button-drk">Edit post</button>
+            </Link>
           )}
         </div>
         {media === null || media === "" ? null : (

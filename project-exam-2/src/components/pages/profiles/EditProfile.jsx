@@ -117,23 +117,23 @@ export default function EditProfile() {
           <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
             {createError && <FormError>{createError}</FormError>}
 
-            <div className="loginInfo">
+            <div className="form__components">
               {errors.avatar && <FormError>{errors.avatar.message}</FormError>}
-              <label className="labelText">
+              <label>
                 <h2>Avatar</h2>
               </label>
               <input {...register("avatar")} placeholder="https://" />
             </div>
 
-            <div className="loginInfo">
+            <div className="form__components">
               {errors.banner && <FormError>{errors.banner.message}</FormError>}
-              <label className="labelText">
+              <label>
                 <h2>Banner</h2>
               </label>
               <input {...register("banner")} placeholder="https://" />
             </div>
 
-            <button className="signButton">
+            <button className="button button-drk">
               {submitting ? "Saving..." : "Save changes"}
             </button>
             {/* <button className="cancel">Cancel</button> */}

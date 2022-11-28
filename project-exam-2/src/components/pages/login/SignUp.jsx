@@ -69,43 +69,43 @@ export default function SignUp() {
   }
 
   return (
-    <div className="loginWrapper">
-      <div className="formWrapper">
+    <div className="register__container">
+      <div className="form__container">
         <Heading title="Welcome" />
         <h2>Sign up to access the fun stuff</h2>
-        <form className="signForm" onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           {loginError && <FormError>{loginError}</FormError>}
-          <div className="loginInfo">
+          <div className="form__components">
             {errors.name && <FormError>{errors.name.message}</FormError>}
-            <label className="labelText">Username*</label>
+            <label>Username</label>
             <input {...register("name")} />
           </div>
-          <div className="loginInfo">
+          <div className="form__components">
             {errors.email && <FormError>{errors.email.message}</FormError>}
-            <label className="labelText">Email*</label>
+            <label>Email</label>
             <input {...register("email")} />
           </div>
-          <div className="loginInfo">
+          <div className="form__components">
             {errors.password && (
               <FormError>{errors.password.message}</FormError>
             )}
-            <label className="labelText">Password*</label>
+            <label>Password</label>
             <input type="password" {...register("password")} />
           </div>
-          <div className="loginCheck">
+          <div className="register__checkbox">
             {errors.terms && <FormError>{errors.terms.message}</FormError>}
             <input type="checkbox" {...register("terms")} />
-            <label className="checkboxText">
+            <label className="form__checkbox--text">
               I agree to the <Link to="/">Terms</Link> and{" "}
               <Link to="/">Privacy Policy</Link>
             </label>
           </div>
 
-          <button className="signButton">
+          <button className="button button-sml button-drk">
             {submitting ? "Signing in..." : "Sign up"}
           </button>
 
-          <p className="underText">
+          <p>
             Already have an account? <Link to="/login">Sign in here!</Link>
           </p>
         </form>

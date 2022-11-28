@@ -140,20 +140,20 @@ export default function EditPost() {
             <LoadingSpinner />
           </div>
         ) : (
-          <div className="formWrapper">
+          <div className="form__container">
             <Heading title="Edit post" />
             {success && <UpdateSuccess id={data.id} />}
             <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
               {createError && <FormError>{createError}</FormError>}
 
-              <div className="loginInfo">
+              <div className="form__components">
                 {errors.title && <FormError>{errors.title.message}</FormError>}
-                <label className="labelText">Title*</label>
+                <label>Title*</label>
                 <input {...register("title")} />
               </div>
 
-              <div className="loginInfo">
-                <label className="labelText">Tags</label>
+              <div className="form__components">
+                <label>Tags</label>
 
                 <Controller
                   name="tags"
@@ -165,23 +165,23 @@ export default function EditPost() {
                 />
               </div>
 
-              <div className="loginInfo">
+              <div className="form__components">
                 {errors.media && <FormError>{errors.media.message}</FormError>}
-                <label className="labelText">Featured image</label>
+                <label>Featured image</label>
                 <input {...register("media")} />
               </div>
 
-              <div className="loginInfo">
+              <div className="form__components">
                 {errors.body && <FormError>{errors.body.message}</FormError>}
-                <label className="labelText">Body*</label>
+                <label>Body*</label>
                 <textarea rows="10" {...register("body")} />
               </div>
 
-              <button className="signButton">
+              <button className="button button-drk">
                 {submitting ? "Saving..." : "Save changes"}
               </button>
             </form>
-            <button onClick={deletePost} className="deleteButton">
+            <button onClick={deletePost} className="button  button-wht">
               Delete post
             </button>
           </div>

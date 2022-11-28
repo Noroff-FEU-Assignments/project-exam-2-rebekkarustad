@@ -1,3 +1,38 @@
+// Button
+.button {
+  width: 100%;
+  border-radius: 10px;
+  &-sml {
+    padding: 10px 30px;
+  }
+  &-lrg {
+    padding: 20px;
+    font-size: 2rem;
+  }
+  &-drk {
+    background-color: $color-primary;
+    color: $color-light;
+    border: 2px solid $color-primary;
+    &:hover {
+      background-color: $color-light;
+      color: $color-primary;
+    }
+  }
+  &-wht {
+    background-color: $color-light;
+    color: $color-primary;
+    border: 2px solid $color-light;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-light;
+    }
+  }
+}
+
+.active {
+  text-decoration: underline;
+}
+
 //forms
 
 textarea {
@@ -5,19 +40,6 @@ textarea {
   font-size: 1rem;
   border: 1px solid $color-primary;
   border-radius: 5px;
-}
-
-.signButton {
-  background-color: $color-primary;
-  padding: 10px;
-  font-size: 1.3rem;
-  color: $color-light;
-  border: 2px solid $color-primary;
-  border-radius: 5px;
-  &:hover {
-    background-color: $color-light;
-    color: $color-primary;
-  }
 }
 
 //logout
@@ -28,19 +50,6 @@ textarea {
     border: none;
   }
 }
-
-//Thank you
-.thankYouWrapper {
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  p {
-    margin-bottom: 50px;
-  }
-}
-
 //delete
 .deleteButton {
   background-color: $color-light;

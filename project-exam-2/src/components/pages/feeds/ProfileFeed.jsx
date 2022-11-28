@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -6,6 +5,8 @@ import { BASE_API, PROFILE_PATH } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 
 import Nav from "../../layout/Nav";
+import FeedToggle from "../../layout/FeedToggle";
+
 import LoadingSpinner from "../../layout/LoadingSpinner";
 
 import ProfileCard from "../profiles/ProfileCard";
@@ -18,7 +19,7 @@ export default function ProfileFeed() {
 
   const limit = 9;
 
-  const url = BASE_API + PROFILE_PATH + `/?limit=${limit}&offset=${offset}`;
+  const url = BASE_API + PROFILE_PATH + `?limit=${limit}&offset=${offset}`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,12 +61,9 @@ export default function ProfileFeed() {
   return (
     <div>
       <Nav />
-      <div className="feedWrapper">
-        <Link to="/feed" className="profileButton">
-          Explore
-        </Link>
-        <h1>Profiles</h1>
+      <FeedToggle />
 
+      <div className="feedWrapper">
         <div className="feedCardsWrapper">
           {profileData.map((data, index) => {
             return (
@@ -80,6 +78,7 @@ export default function ProfileFeed() {
           })}
         </div>
         {loading && <LoadingSpinner />}
+        {error && <div>Error...</div>}
       </div>
     </div>
   );

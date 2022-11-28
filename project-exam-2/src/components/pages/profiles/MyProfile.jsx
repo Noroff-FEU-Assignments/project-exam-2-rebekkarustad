@@ -80,10 +80,10 @@ export default function MyProfile() {
           </div>
           <div className="profileButtons">
             <Link to="/editprofile">
-              <button className="profileBtn">Edit profile</button>
+              <button className="button button-drk">Edit profile</button>
             </Link>
             <Link to="/editprofile">
-              <button className="profileBtn">Share</button>
+              <button className="button button-drk">Share</button>
             </Link>
           </div>
           <div className="profilePosts">
