@@ -10,6 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Nav() {
+  const getName = window.localStorage.getItem("name");
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -25,10 +27,10 @@ export default function Nav() {
   return (
     <div className="navWrapper">
       <div className="navLeft">
-        <Link to="/feed">
+        <Link to="/postfeed">
           <FontAwesomeIcon icon={faHouse} />
         </Link>
-        <Link to="/myprofile">
+        <Link to={`/profile/${getName}`}>
           <FontAwesomeIcon icon={faUser} />
         </Link>
         <Link to="/create">

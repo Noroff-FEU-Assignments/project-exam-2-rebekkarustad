@@ -37,7 +37,7 @@ export default function PostCard({
           <h2>{title}</h2>
         </Link>
       </div>
-      <p>{body}</p>
+      <p className="feed__post--body">{body}</p>
 
       <div className="discover__wrapper">
         <div className="discover__post--reactions">

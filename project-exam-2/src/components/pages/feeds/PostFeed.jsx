@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-import PostCard from "../posts/PostCard";
+import PostCard from "./PostCard";
 
 import Nav from "../../layout/Nav";
 import FeedToggle from "../../layout/FeedToggle";
@@ -14,8 +14,7 @@ export default function DiscoverFeed() {
   const [postData, setPostData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [activeClass, setActiveClass] = useState(null);
-
+  const [cardLoading, setCardLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const limit = 5;
@@ -43,7 +42,7 @@ export default function DiscoverFeed() {
       window.innerHeight + document.documentElement.scrollTop + 1 >=
       document.documentElement.scrollHeight
     ) {
-      setLoading(true);
+      setCardLoading(true);
       setOffset((prev) => prev + 5);
     }
   };
@@ -51,26 +50,30 @@ export default function DiscoverFeed() {
   return (
     <div>
       <Nav />
-      <FeedToggle className={activeClass} />
 
-      <div className="feeds__container feed__container--posts">
-        {postData.map((data, index) => {
-          return (
-            <PostCard
-              key={index}
-              id={data.id}
-              author={data.author}
-              title={data.title}
-              body={data.body}
-              media={data.media}
-              reactions={data.reactions}
-              comments={data.comments}
-            />
-          );
-        })}
-        {loading && <LoadingSpinner />}
-        {error && <div>Error...</div>}
-      </div>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="feeds__container feed__container--posts">
+          <FeedToggle />
+          {postData.map((data, index) => {
+            return (
+              <PostCard
+                key={index}
+                id={data.id}
+                author={data.author}
+                title={data.title}
+                body={data.body}
+                media={data.media}
+                reactions={data.reactions}
+                comments={data.comments}
+              />
+            );
+          })}
+        </div>
+      )}
+      {cardLoading && <LoadingSpinner />}
+      {error && <div>Error...</div>}
     </div>
   );
 }

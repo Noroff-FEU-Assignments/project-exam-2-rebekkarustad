@@ -9,12 +9,13 @@ import FeedToggle from "../../layout/FeedToggle";
 
 import LoadingSpinner from "../../layout/LoadingSpinner";
 
-import ProfileCard from "../profiles/ProfileCard";
+import ProfileCard from "./ProfileCard";
 
 export default function ProfileFeed() {
   const [profileData, setProfileData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [cardLoading, setCardLoading] = useState(false);
   const [offset, setOffset] = useState(0);
 
   const limit = 9;
@@ -53,7 +54,7 @@ export default function ProfileFeed() {
       window.innerHeight + document.documentElement.scrollTop + 1 >=
       document.documentElement.scrollHeight
     ) {
-      setLoading(true);
+      setCardLoading(true);
       setOffset((prev) => prev + 9);
     }
   };
@@ -61,22 +62,27 @@ export default function ProfileFeed() {
   return (
     <div>
       <Nav />
-      <FeedToggle />
-      <div className="feeds__container feed__container--profiles">
-        {profileData.map((data, index) => {
-          return (
-            <ProfileCard
-              key={index}
-              name={data.name}
-              avatar={data.avatar}
-              banner={data.banner}
-              followers={data._count.followers}
-            />
-          );
-        })}
-        {loading && <LoadingSpinner />}
-        {error && <div>Error...</div>}
-      </div>
+
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="feeds__container feed__container--profiles">
+          <FeedToggle />
+          {profileData.map((data, index) => {
+            return (
+              <ProfileCard
+                key={index}
+                name={data.name}
+                avatar={data.avatar}
+                banner={data.banner}
+                followers={data._count.followers}
+              />
+            );
+          })}
+        </div>
+      )}
+      {cardLoading && <LoadingSpinner />}
+      {error && <div>Error...</div>}
     </div>
   );
 }

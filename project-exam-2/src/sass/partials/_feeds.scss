@@ -17,6 +17,9 @@
 .feed__container--profiles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .feed__post--image {
@@ -53,7 +56,8 @@
   object-fit: cover;
 }
 
-.feed__post--heading {
+.feed__post--heading,
+.feed__post--body {
   grid-column: 1 / 4;
 }
 
@@ -89,12 +93,13 @@
 }
 
 .feed__button--container {
+  grid-column: -1/1;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 20px 20px 0 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  width: 100%;
 }
 
 .feed__profile--avatar {

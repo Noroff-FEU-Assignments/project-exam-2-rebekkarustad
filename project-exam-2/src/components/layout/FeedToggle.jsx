@@ -9,7 +9,7 @@ export default function FeedToggle() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname === "/feed") {
+    if (location.pathname === "/postfeed") {
       setExploreClass("button button-lrg button-wht active");
       setProfileClass("button button-lrg button-wht");
     } else {
@@ -19,10 +19,10 @@ export default function FeedToggle() {
   }, [location.pathname]);
 
   const profileClick = () => {
-    navigate("/profile");
+    navigate("/profilefeed");
   };
   const exploreClick = () => {
-    navigate("/feed");
+    navigate("/postfeed");
   };
 
   return (

@@ -89,15 +89,34 @@ export default function Profile() {
             <p>{data._count.followers} followers</p>
             <p>{data._count.following} following</p>
           </div>
-          <div className="profileButtons">
-            {followName.includes(getName) ? (
-              <UnfollowButton className="unfollowBtn">Unfollow</UnfollowButton>
-            ) : (
-              <FollowButton className="profileBtn">Follow</FollowButton>
-            )}
 
-            <button className="profileBtn">Contact</button>
-          </div>
+          {name === getName ? (
+            <div className="profileButtons">
+              <Link to="/editprofile">
+                <button className="button button-lrg button-drk">
+                  Edit profile
+                </button>
+              </Link>
+              <Link to="#">
+                <button className="button button-lrg button-drk">Share</button>
+              </Link>
+            </div>
+          ) : (
+            <div className="profileButtons">
+              {followName.includes(getName) ? (
+                <UnfollowButton className="button button-lrg button-wht">
+                  Unfollow
+                </UnfollowButton>
+              ) : (
+                <FollowButton className="button button-lrg button-drk">
+                  Follow
+                </FollowButton>
+              )}
+
+              <button className="button button-lrg button-drk">Contact</button>
+            </div>
+          )}
+
           <div className="profilePosts">
             {posts.map((post) => (
               <Link to={`/post/${post.id}`} key={post.id}>

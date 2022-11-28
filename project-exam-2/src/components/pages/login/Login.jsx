@@ -41,7 +41,7 @@ function Login() {
 
       window.localStorage.setItem("token", response.data.accessToken);
       window.localStorage.setItem("name", response.data.name);
-      navigate("/feed");
+      navigate("/postfeed");
     } catch (error) {
       console.log("error", error);
       setLoginError("Your email or password is wrong");
