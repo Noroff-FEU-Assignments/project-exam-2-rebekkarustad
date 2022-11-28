@@ -43,17 +43,15 @@ export default function PostCard({
       </div>
       <p className="postBody">{body}</p>
 
-      <div className="replyWrapper">
-        <div className="reactWrapper">
+      <div className="discover__wrapper">
+        <div className="discover__post-reactions">
           {reactions.map((reaction, i) => (
             <div key={i}>
               <p className="emoji">{reaction.symbol}</p>
             </div>
           ))}
 
-          <p className="reactNumber">
-            {reactions.length < 1 ? `0 reactions` : `${reactions.length}`}
-          </p>
+          <p className="reactNumber">{reactions.length < 1 && `0 reactions`}</p>
         </div>
         <p className="commentInfo">
           <Link to={`/post/${id}`}>

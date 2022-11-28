@@ -79,33 +79,3 @@ export default function Comments({
     </div>
   );
 }
-
-/*
-{data.comments.map((comment) => (
-<div key={comment.id} className="commentWrapper">
-    <h3>{comment.owner}</h3>
-    <p>{comment.body}</p>
-    <button onClick={reply}>Reply</button>
-    {replyToggle && (
-    <div>
-        {submitted && (
-        <p className="success">Your message was sent</p>
-        )}
-        <form className="createForm" onSubmit={handleSubmit(onReply)}>
-        <div className="loginInfo">
-            {errors.body && (
-            <FormError>{errors.body.message}</FormError>
-            )}
-            <label className="labelText">Comment</label>
-            <textarea rows="3" {...register("body")} />
-
-            <button className="signButton">
-            {submitting ? "Commenting..." : "Comment"}
-            </button>
-        </div>
-        </form>
-    </div>
-    )}
-</div>
-))} 
-*/

@@ -6,27 +6,31 @@ import { BASE_API, PROFILE_PATH } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 
 import Nav from "../../layout/Nav";
-import blankProfile from "../../../images/profile.jpg";
-import blankBanner from "../../../images/banner.jpg";
-import { onImageError } from "../../../constants/onImageError";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 
+import ProfileCard from "../profiles/ProfileCard";
+
 export default function ProfileFeed() {
-  const [data, setData] = useState([]);
+  const [profileData, setProfileData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [offset, setOffset] = useState(0);
+
+  const limit = 9;
+
+  const url = BASE_API + PROFILE_PATH + `/?limit=${limit}&offset=${offset}`;
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = BASE_API + PROFILE_PATH;
-      // const imageUrl = BASE_API + PROFILE_PATH;
-
       try {
         const response = await axios.get(url, OPTIONS);
 
         console.log("response", response.data);
 
-        setData(response.data);
+        setProfileData((prev) => {
+          return [...prev, ...response.data];
+        });
+
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -37,60 +41,45 @@ export default function ProfileFeed() {
     };
 
     fetchData();
+  }, [url]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
   }, []);
+
+  const handleScroll = async () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setLoading(true);
+      setOffset((prev) => prev + 9);
+    }
+  };
 
   return (
     <div>
       <Nav />
-      <div className="profileFeedWrapper">
+      <div className="feedWrapper">
         <Link to="/feed" className="profileButton">
           Explore
         </Link>
         <h1>Profiles</h1>
 
         <div className="feedCardsWrapper">
-          {loading && (
-            <div className="spinner">
-              <LoadingSpinner />
-            </div>
-          )}
-          {error && <div>Error</div>}
-          {data.map((profile) => (
-            <Link to={`/profile/${profile.name}`}>
-              <div key={profile.name} className="feedCards">
-                {profile.banner === null || profile.banner === "" ? (
-                  <img
-                    src={blankBanner}
-                    alt={profile.name}
-                    className="profileFeedBanner"
-                  />
-                ) : (
-                  <img
-                    src={profile.banner}
-                    alt={profile.name}
-                    className="profileFeedBanner"
-                  />
-                )}
-                {profile.avatar === null || profile.avatar === "" ? (
-                  <img
-                    src={blankProfile}
-                    alt={profile.name}
-                    className="profileFeedAvatar"
-                  />
-                ) : (
-                  <img
-                    src={profile.avatar}
-                    alt={profile.name}
-                    className="profileFeedAvatar"
-                    onError={onImageError}
-                  />
-                )}
-                <h3>{profile.name}</h3>
-                <p>{profile._count.followers} followers</p>
-              </div>
-            </Link>
-          ))}
+          {profileData.map((data, index) => {
+            return (
+              <ProfileCard
+                key={index}
+                name={data.name}
+                avatar={data.avatar}
+                banner={data.banner}
+                followers={data._count.followers}
+              />
+            );
+          })}
         </div>
+        {loading && <LoadingSpinner />}
       </div>
     </div>
   );
