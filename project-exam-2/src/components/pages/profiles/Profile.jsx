@@ -4,16 +4,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Nav from "../../layout/Nav";
-import profile from "../../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../../constants/api";
-import Heading from "../../layout/Heading";
 import { OPTIONS } from "../../../constants/options";
-import { onImageError, onBannerError } from "../../../constants/onImageError";
 import LoadingSpinner from "../../layout/LoadingSpinner";
-import { FollowButton } from "../../ui/FollowButtons";
-import { UnfollowButton } from "../../ui/UnfollowButton";
-
-const getName = window.localStorage.getItem("name");
+import ProfileInfo from "./ProfileInfo";
+import ProfilePosts from "./ProfilePosts";
 
 export default function Profile() {
   const [data, setData] = useState([]);
@@ -60,82 +55,28 @@ export default function Profile() {
           <LoadingSpinner />
         </div>
       ) : (
-        <div className="myProfileWrapper">
-          <div className="profileImageWrapper">
-            {data.banner === null || data.banner === "" ? (
-              <span className="blankBanner"></span>
-            ) : (
-              <img
-                src={data.banner}
-                alt={data.author}
-                className="profileBanner"
-                onError={onBannerError}
-              />
-            )}
-
-            {data.avatar === null || data.avatar === "" ? (
-              <img src={profile} alt={data.name} className="profileAvatar" />
-            ) : (
-              <img
-                src={data.avatar}
-                alt={data.name}
-                className="profileAvatar"
-                onError={onImageError}
-              />
-            )}
-          </div>
-          <div className="profileDetail">
-            <Heading title={data.name} />
-            <p>{data._count.followers} followers</p>
-            <p>{data._count.following} following</p>
-          </div>
-
-          {name === getName ? (
-            <div className="profileButtons">
-              <Link to="/editprofile">
-                <button className="button button-lrg button-drk">
-                  Edit profile
-                </button>
-              </Link>
-              <Link to="#">
-                <button className="button button-lrg button-drk">Share</button>
-              </Link>
-            </div>
-          ) : (
-            <div className="profileButtons">
-              {followName.includes(getName) ? (
-                <UnfollowButton className="button button-lrg button-wht">
-                  Unfollow
-                </UnfollowButton>
-              ) : (
-                <FollowButton className="button button-lrg button-drk">
-                  Follow
-                </FollowButton>
-              )}
-
-              <button className="button button-lrg button-drk">Contact</button>
-            </div>
-          )}
-
-          <div className="profilePosts">
-            {posts.map((post) => (
-              <Link to={`/post/${post.id}`} key={post.id}>
-                <div className="profilePostsCards">
-                  {post.media === null || post.media === "" ? (
-                    <span></span>
-                  ) : (
-                    <img
-                      src={post.media}
-                      alt={post.title}
-                      className="profileBanner"
-                    />
-                  )}
-                  <h2>{post.title}</h2>
-                  <p>{post._count.reactions} reactions</p>
-                  <p>{post._count.comments} comments</p>
-                </div>
-              </Link>
-            ))}
+        <div className="profile__container">
+          <ProfileInfo
+            name={data.name}
+            avatar={data.avatar}
+            banner={data.banner}
+            followers={data._count.followers}
+            following={data._count.following}
+            followname={followName}
+          />
+          <div className="profile__container--posts">
+            {posts.map((post) => {
+              return (
+                <ProfilePosts
+                  key={post.id}
+                  id={post.id}
+                  title={post.title}
+                  media={post.media}
+                  comments={post._count.comments}
+                  reactions={post._count.reactions}
+                />
+              );
+            })}
           </div>
         </div>
       )}
