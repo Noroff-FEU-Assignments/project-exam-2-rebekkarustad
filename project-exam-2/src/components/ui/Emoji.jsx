@@ -30,16 +30,19 @@ export default function Emoji({ data }) {
   }
 
   return (
-    <div className="emojiWrapper">
+    <div className="feed__post--emoji-container">
+      <button
+        className="button button-wht-border button-sml"
+        onClick={toggleEmojiPanel}
+      >
+        React
+      </button>
       {data.map((reaction, i) => (
         <p key={i} className="emoji">
           {reaction.symbol}
         </p>
       ))}
       {data.length < 1 && <p>`0 reactions`</p>}
-      <button className="reactButton" onClick={toggleEmojiPanel}>
-        React
-      </button>
       {showEmojiPanel && <EmojiPicker onEmojiClick={onClick} />}
     </div>
   );

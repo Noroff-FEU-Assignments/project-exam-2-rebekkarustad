@@ -23,34 +23,33 @@ export default function Comments({
   }
 
   return (
-    <div className="comment">
-      <div className="comment-image-container">
+    <div className="comment__container">
+      <div className="comment--image">
         {comment.author.avatar === null ? (
           <img
             src={profile}
             alt={comment.author.name}
-            className="blankAvatar"
+            className="feed__post--avatar"
           />
         ) : (
           <img
             src={comment.author.avatar}
             alt={comment.author.name}
-            className="postAvatar"
+            className="feed__post--avatar"
             onError={onImageError}
           />
         )}
       </div>
-      <div className="comment-right-part">
-        <div className="comment-content">
-          <div className="comment-author">{comment.owner}</div>
-          <div className="comment-text">{comment.body}</div>
-          <div className="comment-date">
+      <div className="comment--right">
+        <div className="comment--content">
+          <div className="comment--author">{comment.owner}:</div>
+          <div className="comment--text">{comment.body}</div>
+          <div className="comment--date">
             <Moment format="MMMM Do, YYYY">{comment.created}</Moment>
           </div>
-          <div className="comment-actions">
-            <div className="comment-action" onClick={toggleReplyPannel}>
-              Reply
-            </div>
+
+          <div className="comment--action" onClick={toggleReplyPannel}>
+            Reply
           </div>
         </div>
         {isReplying && (
@@ -61,7 +60,7 @@ export default function Comments({
         )}
 
         {replies.length > 0 && (
-          <div className="replies">
+          <div className="comment--replies">
             {replies.map((reply) => (
               <Comments
                 comment={reply}

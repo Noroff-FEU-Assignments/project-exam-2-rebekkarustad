@@ -17,9 +17,9 @@ h1 {
 }
 
 h2 {
-  font-size: 1.6rem;
-  font-family: $font-header;
   font-size: 2rem;
+  font-family: $font-header;
+  color: $color-primary;
 }
 
 p {
@@ -37,12 +37,24 @@ a {
   }
 }
 
+a,
 button {
   cursor: pointer;
 }
 
 img {
   object-fit: cover;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  &-wht {
+    background-color: $color-light;
+    border-radius: 20px;
+    margin-top: 20px;
+  }
 }
 
 .error {

@@ -134,7 +134,7 @@ export default function EditPost() {
   return (
     <div>
       <Nav />
-      <div className="createWrapper">
+      <div className="container container-wht">
         {loading ? (
           <div className="spinner">
             <LoadingSpinner />
@@ -143,7 +143,7 @@ export default function EditPost() {
           <div className="form__container">
             <Heading title="Edit post" />
             {success && <UpdateSuccess id={data.id} />}
-            <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               {createError && <FormError>{createError}</FormError>}
 
               <div className="form__components">
@@ -177,11 +177,14 @@ export default function EditPost() {
                 <textarea rows="10" {...register("body")} />
               </div>
 
-              <button className="button button-drk">
+              <button className="button button-sml button-drk">
                 {submitting ? "Saving..." : "Save changes"}
               </button>
             </form>
-            <button onClick={deletePost} className="button  button-wht">
+            <button
+              onClick={deletePost}
+              className="button button-sml button-wht-border"
+            >
               Delete post
             </button>
           </div>

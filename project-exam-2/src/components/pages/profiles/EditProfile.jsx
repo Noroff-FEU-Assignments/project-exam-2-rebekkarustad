@@ -98,23 +98,33 @@ export default function EditProfile() {
           <LoadingSpinner />
         </div>
       ) : (
-        <div className="editProfileWrapper">
+        <div className="container container-wht">
           <Heading title="Edit profile" />
-          {data.avatar === null || data.avatar === "" ? (
-            <img src={profile} alt={data.name} className="editAvatar" />
-          ) : (
-            <img src={data.avatar} alt={data.name} className="editAvatar" />
-          )}
-          <div className="profileName">
-            <h2>Name</h2>
-            <p>{data.name}</p>
-          </div>
-          <div className="profileEmail">
-            <h2>Email</h2>
-            <p>{data.email}</p>
+          <div className="edit__profile--info">
+            {data.avatar === null || data.avatar === "" ? (
+              <img
+                src={profile}
+                alt={data.name}
+                className="edit__profile-avatar"
+              />
+            ) : (
+              <img
+                src={data.avatar}
+                alt={data.name}
+                className="edit__profile--avatar"
+              />
+            )}
+            <div className="edit__profile--name">
+              <h2>Name</h2>
+              <p>{data.name}</p>
+            </div>
+            <div className="edit__profile--email">
+              <h2>Email</h2>
+              <p>{data.email}</p>
+            </div>
           </div>
 
-          <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {createError && <FormError>{createError}</FormError>}
 
             <div className="form__components">
@@ -133,7 +143,7 @@ export default function EditProfile() {
               <input {...register("banner")} placeholder="https://" />
             </div>
 
-            <button className="button button-drk">
+            <button className="button button-drk button-sml">
               {submitting ? "Saving..." : "Save changes"}
             </button>
             {/* <button className="cancel">Cancel</button> */}

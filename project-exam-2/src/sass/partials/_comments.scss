@@ -1,91 +1,53 @@
-.comments {
-  margin-top: 20px;
-}
-
-.comments-title {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
-
-.comments-container {
-  margin-top: 40px;
+.comment__container {
+  display: flex;
+  margin-bottom: 28px;
 }
 
 .comment-form-title {
   font-size: 22px;
 }
 
-.comment-form-textarea {
-  width: 100%;
-  height: 80px;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  border: 1px solid rgb(107, 114, 12);
-}
-
-.comment {
-  display: flex;
-  margin-bottom: 28px;
-}
-
-.comment-image-container {
+.comment--image {
   margin-right: 12px;
 }
 
-.comment-image-container img {
-  border-radius: 10px;
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-}
-
-.comment-right-part {
+.comment--right {
   width: 100%;
 }
 
-.comment-content {
+.comment--content {
   display: grid;
   grid-template-columns: auto 100px 1fr 1fr;
   font-size: 1.1rem;
 }
 
-.comment-text {
+.comment--text {
   grid-column: 2 / 5;
 }
 
-.comment-author {
+.comment--author {
   margin-right: 8px;
   font-weight: 500;
 }
 
-.comment-date {
+.comment--date {
   font-size: 0.8rem;
   grid-column: 1 / 3;
   grid-row: 2 / 3;
 }
 
-.comment-actions {
-  cursor: pointer;
+.comment--action {
   font-size: 0.8rem;
   grid-column: 3 / 4;
   grid-row: 2 / 3;
-}
-
-.comment-action {
   margin-right: 8px;
+  cursor: pointer;
 }
 
-.comment-action:hover {
+.comment--action:hover {
   text-decoration: underline;
 }
 
-.replies {
+.comment--replies {
   margin-top: 20px;
-}
-
-.commentForm {
-  grid-column: 1 / 3;
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  gap: 0;
 }

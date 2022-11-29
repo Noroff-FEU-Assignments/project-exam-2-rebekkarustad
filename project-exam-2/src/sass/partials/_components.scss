@@ -4,6 +4,7 @@
   &-sml {
     border-radius: 10px;
     padding: 10px 30px;
+    font-size: 1.3rem;
   }
   &-lrg {
     padding: 20px;
@@ -29,19 +30,19 @@
       color: $color-light;
     }
   }
+  &-wht-border {
+    background-color: $color-light;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-light;
+    }
+  }
 }
 
 .active {
   text-decoration: underline;
-}
-
-//forms
-
-textarea {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid $color-primary;
-  border-radius: 5px;
 }
 
 //logout

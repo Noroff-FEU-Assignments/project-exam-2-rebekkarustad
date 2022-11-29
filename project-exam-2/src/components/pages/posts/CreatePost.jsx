@@ -63,15 +63,15 @@ export default function CreatePost() {
   return (
     <div className="createPage">
       <Nav />
-      <div className="createWrapper">
+      <div className="container container-wht">
         <div className="form__container">
           <Heading title="Create post" />
-          <form className="createForm" onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {createError && <FormError>{createError}</FormError>}
 
             <div className="form__components">
               {errors.title && <FormError>{errors.title.message}</FormError>}
-              <label>Title*</label>
+              <label>Title</label>
               <input {...register("title")} />
             </div>
 
@@ -89,11 +89,11 @@ export default function CreatePost() {
 
             <div className="form__components">
               {errors.body && <FormError>{errors.body.message}</FormError>}
-              <label>Body*</label>
+              <label>Body</label>
               <textarea rows="10" {...register("body")} />
             </div>
 
-            <button className="button button-drk">
+            <button className="button button-sml button-drk">
               {submitting ? "Creating..." : "Create"}
             </button>
           </form>

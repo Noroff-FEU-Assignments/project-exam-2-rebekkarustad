@@ -9,9 +9,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  h2 {
-    color: $color-primary;
-  }
 }
 
 .feed__container--profiles {
@@ -24,7 +21,7 @@
 
 .feed__post--image {
   width: 100%;
-  grid-column: 1 / 4;
+  grid-column: 1 / 3;
 }
 
 .feed__container--profiles-cards {
@@ -49,8 +46,8 @@
 }
 
 .feed__post--avatar {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   border-radius: 10px;
   grid-column: 1 / 2;
   object-fit: cover;

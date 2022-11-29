@@ -1,0 +1,21 @@
+.edit__profile--info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+}
+
+.edit__profile--avatar {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.edit__profile--name {
+  grid-column: 2 / 4;
+}
+.edit__profile--email {
+  grid-column: 2 / 4;
+}

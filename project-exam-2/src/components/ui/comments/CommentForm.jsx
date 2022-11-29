@@ -10,13 +10,9 @@ export default function CommentForm({ handleSubmit, submitLabel }) {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <textarea
-        className="comment-form-textarea"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button className="button">{submitLabel}</button>
+    <form onSubmit={onSubmit} className="form--reply">
+      <textarea value={text} onChange={(e) => setText(e.target.value)} />
+      <button className="button button-sml button-drk">{submitLabel}</button>
     </form>
   );
 }

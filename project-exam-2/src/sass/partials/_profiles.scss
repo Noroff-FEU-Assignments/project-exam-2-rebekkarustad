@@ -54,11 +54,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  h2 {
-    font-family: $font-header;
-    color: $color-primary;
-    font-size: 1.7rem;
-  }
   a {
     text-decoration: none;
   }
