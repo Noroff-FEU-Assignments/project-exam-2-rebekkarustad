@@ -9,11 +9,17 @@
   border-radius: 30px;
   box-shadow: 3px 3px 7px $color-shadow;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
   margin: auto;
+  h2 {
+    color: $color-text;
+  }
+  @media (max-width: $breakpoint-lrg) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .form__container {

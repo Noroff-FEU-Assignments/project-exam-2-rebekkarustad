@@ -45,9 +45,10 @@ export default function PostDetails({
       <h1>{title}</h1>
       <p>{body}</p>
       <ul className="tag__container">
+        Tags:
         {tags.map((tag, i) => (
           <li key={i} className="tags">
-            Tags: {tag}
+            {tag}
           </li>
         ))}
       </ul>

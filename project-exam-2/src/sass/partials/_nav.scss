@@ -1,12 +1,41 @@
-.navWrapper {
-  background-color: $color-light;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.navbar {
+  background-color: $color-light !important;
 }
 
-.svg-inline--fa {
-  height: 32px;
-  padding: 20px;
+.navbar-nav {
+  a,
+  a:hover {
+    color: $color-primary;
+    font-size: 1.2rem;
+  }
+}
+
+.navbar-toggler {
+  border: 1px solid $color-primary;
+}
+
+.bi-list {
   color: $color-primary;
+  font-size: 2rem;
+}
+
+.navbar-collapse {
+  @media (max-width: 768px) {
+    margin-top: 15px;
+  }
+}
+
+.navbar-expand-md {
+  .navbar-nav {
+    @media (min-width: 768px) {
+      gap: 20px;
+    }
+  }
+}
+
+.nav__right {
+  button {
+    background-color: transparent;
+    border: none;
+  }
 }

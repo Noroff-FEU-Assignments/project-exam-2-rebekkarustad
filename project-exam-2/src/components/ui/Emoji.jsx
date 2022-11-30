@@ -42,7 +42,7 @@ export default function Emoji({ data }) {
           {reaction.symbol}
         </p>
       ))}
-      {data.length < 1 && <p>`0 reactions`</p>}
+      {data.length < 1 && <p>0 reactions</p>}
       {showEmojiPanel && <EmojiPicker onEmojiClick={onClick} />}
     </div>
   );

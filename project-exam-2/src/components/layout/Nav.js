@@ -1,15 +1,10 @@
-import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+
 import { useNavigate } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHouse,
-  faUser,
-  faUpload,
-  faRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
-
-export default function Nav() {
+export default function NavBar() {
   const getName = window.localStorage.getItem("name");
 
   const navigate = useNavigate();
@@ -25,23 +20,22 @@ export default function Nav() {
   };
 
   return (
-    <div className="navWrapper">
-      <div className="navLeft">
-        <Link to="/postfeed">
-          <FontAwesomeIcon icon={faHouse} />
-        </Link>
-        <Link to={`/profile/${getName}`}>
-          <FontAwesomeIcon icon={faUser} />
-        </Link>
-        <Link to="/create">
-          <FontAwesomeIcon icon={faUpload} />
-        </Link>
-      </div>
-      <div className="navRight">
-        <button onClick={logout}>
-          <FontAwesomeIcon icon={faRightFromBracket} />
-        </button>
-      </div>
-    </div>
+    <Navbar collapseOnSelect bg="light" expand="md">
+      <Container>
+        <Navbar.Toggle aria-controls="basic-navbar-nav">
+          <i class="bi bi-list"></i>
+        </Navbar.Toggle>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/postfeed">Home</Nav.Link>
+            <Nav.Link href={`/profile/${getName}`}>Profile</Nav.Link>
+            <Nav.Link href="/create">Create</Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link onClick={logout}>Log out</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
