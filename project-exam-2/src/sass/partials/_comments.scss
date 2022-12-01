@@ -1,14 +1,15 @@
 .comment__container {
   display: flex;
   margin-bottom: 28px;
-}
-
-.comment-form-title {
-  font-size: 22px;
+  @media (max-width: $breakpoint-sml) {
+    flex-direction: column;
+  }
 }
 
 .comment--image {
   margin-right: 12px;
+  display: flex;
+  flex-direction: column;
 }
 
 .comment--right {
@@ -16,32 +17,31 @@
 }
 
 .comment--content {
-  display: grid;
-  grid-template-columns: auto 100px 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   font-size: 1.1rem;
 }
 
 .comment--text {
-  grid-column: 2 / 5;
+  margin-top: 5px;
 }
 
 .comment--author {
   margin-right: 8px;
   font-weight: 500;
+  margin: 5px 0;
 }
 
 .comment--date {
   font-size: 0.8rem;
-  grid-column: 1 / 3;
-  grid-row: 2 / 3;
 }
 
 .comment--action {
-  font-size: 0.8rem;
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
-  margin-right: 8px;
   cursor: pointer;
+  margin-top: 5px;
+  color: $color-primary;
+  text-decoration: underline;
+  font-size: 0.8rem;
 }
 
 .comment--action:hover {
@@ -50,4 +50,17 @@
 
 .comment--replies {
   margin-top: 20px;
+  @media (max-width: $breakpoint-sml) {
+    padding-left: 40px;
+  }
+}
+
+.comment--poster {
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight: 500;
+  padding-top: 5px;
+  @media (max-width: $breakpoint-sml) {
+    text-align: left;
+  }
 }

@@ -17,11 +17,29 @@
   a:hover {
     text-decoration: none;
   }
+  @media (max-width: $breakpoint-mdm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $breakpoint-sml) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .feed__post--image {
   width: 100%;
   grid-column: 1 / 3;
+}
+
+.feed__post--container {
+  background-color: $color-light;
+  border-radius: 20px;
+  padding: 30px 80px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  @media (max-width: $breakpoint-mdm) {
+    padding: 30px;
+  }
 }
 
 .feed__container--profiles-cards {
@@ -34,15 +52,6 @@
   h3 {
     margin: 60px auto 10px auto;
   }
-}
-
-.feed__post--container {
-  background-color: $color-light;
-  border-radius: 20px;
-  padding: 30px 80px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
 }
 
 .feed__post--avatar {
@@ -62,6 +71,7 @@
   font-size: 1.2rem;
   text-transform: capitalize;
   align-self: center;
+  overflow: hidden;
 }
 
 .discover__post--reactions {
@@ -82,21 +92,15 @@
   align-self: center;
 }
 
-.discover__wrapper {
+.discover__container {
   grid-column: 1 / 3;
   display: grid;
   grid-template-columns: 1fr auto;
   width: 100%;
-}
-
-.feed__button--container {
-  grid-column: -1/1;
-  margin: 0 auto;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 100%;
+  @media (max-width: $breakpoint-sml) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }
 
 .feed__profile--avatar {
@@ -110,4 +114,19 @@
   width: 100%;
   height: 200px;
   border-radius: 20px;
+}
+
+// toggle
+
+.feed__button--container {
+  grid-column: -1/1;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  @media (max-width: $breakpoint-mdm) {
+    grid-template-columns: 1fr;
+  }
 }

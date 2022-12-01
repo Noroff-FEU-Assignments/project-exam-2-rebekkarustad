@@ -20,14 +20,14 @@
 }
 
 .navbar-collapse {
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-mdm) {
     margin-top: 15px;
   }
 }
 
 .navbar-expand-md {
   .navbar-nav {
-    @media (min-width: 768px) {
+    @media (min-width: $breakpoint-mdm) {
       gap: 20px;
     }
   }

@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import PostCard from "./PostCard";
 
 import Nav from "../../layout/Nav";
-import FeedToggle from "../../layout/FeedToggle";
+import FeedToggle from "../../ui/FeedToggle";
 import { FULL_API } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";

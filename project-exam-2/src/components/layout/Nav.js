@@ -23,7 +23,7 @@ export default function NavBar() {
     <Navbar collapseOnSelect bg="light" expand="md">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav">
-          <i class="bi bi-list"></i>
+          <i className="bi bi-list"></i>
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

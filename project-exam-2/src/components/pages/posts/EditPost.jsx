@@ -134,7 +134,7 @@ export default function EditPost() {
   return (
     <div>
       <Nav />
-      <div className="container container-wht">
+      <div className="container">
         {loading ? (
           <div className="spinner">
             <LoadingSpinner />

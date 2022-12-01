@@ -98,56 +98,62 @@ export default function EditProfile() {
           <LoadingSpinner />
         </div>
       ) : (
-        <div className="container container-wht">
-          <Heading title="Edit profile" />
-          <div className="edit__profile--info">
-            {data.avatar === null || data.avatar === "" ? (
-              <img
-                src={profile}
-                alt={data.name}
-                className="edit__profile-avatar"
-              />
-            ) : (
-              <img
-                src={data.avatar}
-                alt={data.name}
-                className="edit__profile--avatar"
-              />
-            )}
-            <div className="edit__profile--name">
-              <h2>Name</h2>
-              <p>{data.name}</p>
+        <div className="container">
+          <div className="edit__profile--container">
+            <Heading title="Edit profile" />
+            <div className="edit__profile--info">
+              {data.avatar === null || data.avatar === "" ? (
+                <img
+                  src={profile}
+                  alt={data.name}
+                  className="edit__profile-avatar"
+                />
+              ) : (
+                <img
+                  src={data.avatar}
+                  alt={data.name}
+                  className="edit__profile--avatar"
+                />
+              )}
+              <div className="edit__profile--name">
+                <h2>Name</h2>
+                <p>{data.name}</p>
+              </div>
+              <div className="edit__profile--email">
+                <h2>Email</h2>
+                <p>{data.email}</p>
+              </div>
             </div>
-            <div className="edit__profile--email">
-              <h2>Email</h2>
-              <p>{data.email}</p>
-            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {createError && <FormError>{createError}</FormError>}
+
+              <div className="form__components">
+                {errors.avatar && (
+                  <FormError>{errors.avatar.message}</FormError>
+                )}
+                <label>
+                  <h2>Avatar</h2>
+                </label>
+                <input {...register("avatar")} placeholder="https://" />
+              </div>
+
+              <div className="form__components">
+                {errors.banner && (
+                  <FormError>{errors.banner.message}</FormError>
+                )}
+                <label>
+                  <h2>Banner</h2>
+                </label>
+                <input {...register("banner")} placeholder="https://" />
+              </div>
+
+              <button className="button button-drk button-sml">
+                {submitting ? "Saving..." : "Save changes"}
+              </button>
+              {/* <button className="cancel">Cancel</button> */}
+            </form>
           </div>
-
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {createError && <FormError>{createError}</FormError>}
-
-            <div className="form__components">
-              {errors.avatar && <FormError>{errors.avatar.message}</FormError>}
-              <label>
-                <h2>Avatar</h2>
-              </label>
-              <input {...register("avatar")} placeholder="https://" />
-            </div>
-
-            <div className="form__components">
-              {errors.banner && <FormError>{errors.banner.message}</FormError>}
-              <label>
-                <h2>Banner</h2>
-              </label>
-              <input {...register("banner")} placeholder="https://" />
-            </div>
-
-            <button className="button button-drk button-sml">
-              {submitting ? "Saving..." : "Save changes"}
-            </button>
-            {/* <button className="cancel">Cancel</button> */}
-          </form>
         </div>
       )}
       {error && <div>Error</div>}

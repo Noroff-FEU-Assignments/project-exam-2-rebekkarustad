@@ -63,7 +63,7 @@ export default function CreatePost() {
   return (
     <div className="createPage">
       <Nav />
-      <div className="container container-wht">
+      <div className="container">
         <div className="form__container">
           <Heading title="Create post" />
           <form onSubmit={handleSubmit(onSubmit)}>

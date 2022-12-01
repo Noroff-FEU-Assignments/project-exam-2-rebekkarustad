@@ -5,7 +5,7 @@ import { BASE_API, PROFILE_PATH } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 
 import Nav from "../../layout/Nav";
-import FeedToggle from "../../layout/FeedToggle";
+import FeedToggle from "../../ui/FeedToggle";
 
 import LoadingSpinner from "../../layout/LoadingSpinner";
 

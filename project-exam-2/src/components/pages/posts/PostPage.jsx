@@ -77,36 +77,38 @@ export default function PostPage() {
           <LoadingSpinner />
         </div>
       ) : (
-        <div className="container container-wht">
-          <PostDetails
-            id={data.id}
-            author={data.author}
-            title={data.title}
-            media={data.media}
-            body={data.body}
-            comments={data.comments}
-            reactions={data.reactions}
-            tags={data.tags}
-          />
+        <div className="container">
+          <div className="post__container">
+            <PostDetails
+              id={data.id}
+              author={data.author}
+              title={data.title}
+              media={data.media}
+              body={data.body}
+              comments={data.comments}
+              reactions={data.reactions}
+              tags={data.tags}
+            />
 
-          <hr />
-          <div className="post-comment__container">
-            <h2>
-              {backendComments.length === 1
-                ? `${backendComments.length} comment`
-                : `${backendComments.length} comments`}
-            </h2>
-            {rootComments.map((rootComment) => (
-              <Comments
-                key={rootComment.id}
-                comment={rootComment}
-                replies={getReplies(rootComment.id)}
-                addComment={addComment}
-                activeComment={activeComment}
-                setActiveComment={setActiveComment}
-              />
-            ))}
-            <CommentForm submitLabel="Write" handleSubmit={addComment} />
+            <hr />
+            <div className="post-comment__container">
+              <h2>
+                {backendComments.length === 1
+                  ? `${backendComments.length} comment`
+                  : `${backendComments.length} comments`}
+              </h2>
+              {rootComments.map((rootComment) => (
+                <Comments
+                  key={rootComment.id}
+                  comment={rootComment}
+                  replies={getReplies(rootComment.id)}
+                  addComment={addComment}
+                  activeComment={activeComment}
+                  setActiveComment={setActiveComment}
+                />
+              ))}
+              <CommentForm submitLabel="Write" handleSubmit={addComment} />
+            </div>
           </div>
         </div>
       )}

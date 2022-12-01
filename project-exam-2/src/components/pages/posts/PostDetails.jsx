@@ -15,7 +15,7 @@ export default function PostDetails({
   tags,
 }) {
   return (
-    <div className="post__container">
+    <div className="post__container--detail">
       {author.avatar === null ? (
         <img src={profile} alt={author.name} className="feed__post--avatar" />
       ) : (

@@ -22,6 +22,8 @@ export default function Comments({
     setActiveComment({ id: comment.id, type: "replying" });
   }
 
+  const getName = window.localStorage.getItem("name");
+
   return (
     <div className="comment__container">
       <div className="comment--image">
@@ -39,14 +41,21 @@ export default function Comments({
             onError={onImageError}
           />
         )}
+        {comment.author.name === getName ? (
+          <p className="comment--poster">Author</p>
+        ) : (
+          <p className="comment--poster">Reader</p>
+        )}
       </div>
       <div className="comment--right">
         <div className="comment--content">
-          <div className="comment--author">{comment.owner}:</div>
-          <div className="comment--text">{comment.body}</div>
-          <div className="comment--date">
-            <Moment format="MMMM Do, YYYY">{comment.created}</Moment>
+          <div className="comment--author">
+            {comment.owner}
+            <div className="comment--date">
+              <Moment format="MMMM Do, YYYY">{comment.created}</Moment>
+            </div>
           </div>
+          <div className="comment--text">{comment.body}</div>
 
           <div className="comment--action" onClick={toggleReplyPannel}>
             Reply

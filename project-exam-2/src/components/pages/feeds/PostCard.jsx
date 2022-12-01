@@ -39,7 +39,7 @@ export default function PostCard({
       </div>
       <p className="feed__post--body">{body}</p>
 
-      <div className="discover__wrapper">
+      <div className="discover__container">
         <div className="discover__post--reactions">
           {reactions.map((reaction, i) => (
             <div key={i}>
