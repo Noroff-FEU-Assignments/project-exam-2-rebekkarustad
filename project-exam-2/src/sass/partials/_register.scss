@@ -1,13 +1,12 @@
 // Form
 .register__container {
-  max-height: 725px;
+  max-height: 850px;
   max-width: 1200px;
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 30px;
   background-color: $color-light;
   border-radius: 30px;
-  box-shadow: 3px 3px 7px $color-shadow;
   position: absolute;
   top: 20px;
   bottom: 20px;

@@ -2,14 +2,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap");
 
 $color-primary: #a75b43;
-$color-secondary: #ffebe5;
+$color-secondary: #f4e7e3;
 $color-links: #ca9a5a;
 $color-text: #000000;
 $color-light: #ffffff;
-$color-shadow: #cecece;
+$color-shadow: rgba(0, 0, 0, 0.04);
 
-$color-success: #77d79a;
-$color-error: #ed6a4e;
+$color-success: #dbe9cf;
+$color-warning: #f9edcd;
+$color-error: #f4c0c0;
 
 $font-header: "Playfair Display", serif;
 $font-text: "Chivo", sans-serif;

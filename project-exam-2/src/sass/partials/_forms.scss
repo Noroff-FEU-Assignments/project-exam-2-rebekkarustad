@@ -21,10 +21,9 @@ input[type="checkbox"] {
   appearance: none;
   background-color: #fff;
   margin: 0;
-  font: inherit;
   color: $color-primary;
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border: 1px solid $color-primary;
   border-radius: 5px;
   transform: translateY(-0.075rem);
@@ -57,5 +56,4 @@ input[type="checkbox"] {
 
 .form__checkbox--text {
   padding-left: 10px;
-  padding-top: 2px;
 }

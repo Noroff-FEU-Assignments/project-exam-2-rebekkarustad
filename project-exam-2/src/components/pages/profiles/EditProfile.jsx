@@ -14,8 +14,8 @@ import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 
 const schema = yup.object().shape({
-  avatar: yup.string().url("Must be a valid URL"),
-  banner: yup.string().url("Must be a valid URL"),
+  avatar: yup.string().url("Must be a valid URL").nullable(),
+  banner: yup.string().url("Must be a valid URL").nullable(),
 });
 
 export default function EditProfile() {
@@ -80,7 +80,7 @@ export default function EditProfile() {
         },
       });
       console.log("response", response.data);
-      history(`/myprofile`);
+      history(`/profile/${getName}`);
     } catch (error) {
       console.log("error", error);
       setCreateError("Something went wrong");
@@ -106,7 +106,7 @@ export default function EditProfile() {
                 <img
                   src={profile}
                   alt={data.name}
-                  className="edit__profile-avatar"
+                  className="edit__profile--avatar"
                 />
               ) : (
                 <img

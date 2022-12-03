@@ -16,23 +16,24 @@ const url = BASE_API + REGISTER_PATH;
 const schema = yup.object().shape({
   name: yup
     .string()
+    .required("Please enter your username")
+    .min(5, "The password must be at least 5 letters long")
     .matches(
       NAME_REGEX,
-      "Your name does not match the criteria: Must not contain punctuation symbols apart from underscore "
-    )
-    .required("Please enter your name"),
+      "Must not contain punctuation symbols apart from underscore "
+    ),
   email: yup
     .string()
     .email()
+    .required("Please enter your email address")
     .matches(
       EMAIL_REGEX,
-      "Your name does not match the criteria: must be a valid 'stud.noroff.no' or 'noroff.no' email address"
-    )
-    .required("Please enter your email address"),
+      "Your email must be a 'stud.noroff.no' or 'noroff.no' email address"
+    ),
   password: yup
     .string()
-    .min(8, "The password must be at least 8 letters long")
-    .required("Please enter your password"),
+    .required("Please enter your password")
+    .min(8, "The password must be at least 8 letters long"),
   terms: yup.boolean().oneOf([true], "Must Accept Terms and Conditions"),
 });
 
@@ -67,6 +68,8 @@ export default function SignUp() {
       setSubmitting(false);
     }
   }
+
+  console.log(errors);
 
   return (
     <div className="register__container">
@@ -106,7 +109,7 @@ export default function SignUp() {
           </button>
 
           <p>
-            Already have an account? <Link to="/login">Sign in here!</Link>
+            Already have an account? <Link to="/login">Log in here!</Link>
           </p>
         </form>
       </div>
