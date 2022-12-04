@@ -1,63 +1,46 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import useAxiosGet from "../../../hooks/useAxiosGet";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 import { BASE_API, POST_PATH, FLAG_PATH } from "../../../constants/api";
+import useToken from "../../../hooks/useToken";
+import useTitle from "../../../hooks/useTitle";
 
 import Nav from "../../layout/Nav";
-import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
+import Error from "../../layout/Error";
 import PostDetails from "./PostDetails";
 
 import Comments from "../../ui/comments/Comments";
 import CommentForm from "../../ui/comments/CommentForm";
 
-import useTitle from "../../../hooks/useTitle";
-import Error from "../../layout/Error";
-import useToken from "../../../hooks/useToken";
-
 export default function PostPage() {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
+  const [commentError, setCommentError] = useState(null);
+
+  let { id } = useParams();
+
+  const url = BASE_API + POST_PATH + `/${id}` + FLAG_PATH;
+
+  const { data, loading, error, commentData } = useAxiosGet(url);
 
   useTitle(data.title);
   useToken();
 
-  const rootComments = backendComments.filter(
+  const rootComments = commentData.filter(
     (backendComment) => backendComment.replyToId === null
   );
 
   const getReplies = (commendId) => {
-    return backendComments.filter(
+    return commentData.filter(
       (backendComment) => backendComment.replyToId === commendId
     );
   };
 
-  let { id } = useParams();
-
-  const commentUrl = BASE_API + POST_PATH + `/${id}/comment`;
-  const url = BASE_API + POST_PATH + `/${id}` + FLAG_PATH;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(url, OPTIONS);
-        setData(response.data);
-        setBackendComments(response.data.comments);
-      } catch (error) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [url]);
-
   const addComment = (text, replyToId) => {
     const getToken = window.localStorage.getItem("token");
+    const commentUrl = BASE_API + POST_PATH + `/${id}/comment`;
 
     const postData = async () => {
       await axios({
@@ -72,7 +55,8 @@ export default function PostPage() {
         },
       });
       setActiveComment(null);
-      setError(false);
+      setCommentError(false);
+      window.location.reload(true);
     };
     postData();
   };
@@ -104,9 +88,9 @@ export default function PostPage() {
             <hr />
             <div className="post-comment__container">
               <h2>
-                {backendComments.length === 1
-                  ? `${backendComments.length} comment`
-                  : `${backendComments.length} comments`}
+                {commentData.length === 1
+                  ? `${commentData.length} comment`
+                  : `${commentData.length} comments`}
               </h2>
               {rootComments.map((rootComment) => (
                 <Comments
@@ -124,7 +108,7 @@ export default function PostPage() {
           </div>
         </div>
       )}
-      {error && <div>Error</div>}
+      {commentError && <div>Error</div>}
     </div>
   );
 }

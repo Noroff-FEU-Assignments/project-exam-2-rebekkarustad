@@ -76,8 +76,8 @@ export default function SignUp() {
   return (
     <div className="register__container">
       <div className="form__container">
-        <Heading title="Welcome" />
-        <h2>Sign up to access the fun stuff</h2>
+        <Heading title="The Social Status" />
+        <h2>Welcome! Sign up to get access</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           {loginError && <FormError>{loginError}</FormError>}
           <div className="form__components">
@@ -96,14 +96,6 @@ export default function SignUp() {
             )}
             <label>Password</label>
             <input type="password" {...register("password")} />
-          </div>
-          <div className="register__checkbox">
-            {errors.terms && <FormError>{errors.terms.message}</FormError>}
-            <input type="checkbox" {...register("terms")} />
-            <label className="form__checkbox--text">
-              I agree to the <Link to="/">Terms</Link> and{" "}
-              <Link to="/">Privacy Policy</Link>
-            </label>
           </div>
 
           <button className="button button-sml button-drk">

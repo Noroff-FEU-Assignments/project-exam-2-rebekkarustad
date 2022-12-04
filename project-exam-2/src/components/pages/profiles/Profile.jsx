@@ -48,6 +48,9 @@ export default function Profile() {
     fetchData();
   }, [postUrl, url]);
 
+  console.log(data);
+  console.log(posts);
+
   return (
     <div>
       <Nav />

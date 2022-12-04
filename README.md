@@ -13,6 +13,14 @@ If you already have an account, you can click on the bottom link to access the l
 
 ---
 
+# Things to note
+
+1. On the profiles, the "share" and "contact" buttons do not work. In real life, these would have real working components, now they are there just to show what can be done.
+
+2. There is no footer in the project on purpose. This is because close to all social media platforms I have research, none of them have a footer, and it didn't fit with the infinite scroll anyways.
+
+---
+
 # Rapport
 
 ## Introduction
@@ -77,7 +85,7 @@ As mentioned, some of the components were easier than others. Here are the compo
 
 - Keeping to plan. As always, keeping to the plan is not easy, especially with life going on. Some things took longer than expected, but I got there in the end.
 
-- Hooks. I know that I have reused some of the code a lot and could probably make more of them into hooks, but I had a lot of issues with understanding it correctly, which is something I really have to work on in the future, as it is beneficial.
+- Hooks. I know that I have reused some of the code a lot and could definitely make more of them into hooks, but I had a lot of issues with understanding it correctly, which is something I really have to work on in the future, as it is beneficial.
 
 ## Next time
 
