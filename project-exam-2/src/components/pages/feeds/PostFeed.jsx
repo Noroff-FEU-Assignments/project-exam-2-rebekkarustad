@@ -9,6 +9,7 @@ import FeedToggle from "../../ui/FeedToggle";
 import { FULL_API } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
+import Error from "../../layout/Error";
 
 export default function DiscoverFeed() {
   const [postData, setPostData] = useState([]);
@@ -25,12 +26,18 @@ export default function DiscoverFeed() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios(url, OPTIONS);
+      try {
+        const response = await axios(url, OPTIONS);
 
-      setPostData((prev) => {
-        return [...prev, ...response.data];
-      });
-      setLoading(false);
+        setPostData((prev) => {
+          return [...prev, ...response.data];
+        });
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchData();
   }, [url]);
@@ -59,6 +66,8 @@ export default function DiscoverFeed() {
       ) : (
         <div className="feeds__container feed__container--posts">
           <FeedToggle />
+          {error && <Error />}
+
           {postData.map((data, index) => {
             return (
               <PostCard
@@ -76,7 +85,6 @@ export default function DiscoverFeed() {
         </div>
       )}
       {cardLoading && <LoadingSpinner />}
-      {error && <div>Error...</div>}
     </div>
   );
 }

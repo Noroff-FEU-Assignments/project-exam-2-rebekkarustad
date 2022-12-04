@@ -10,6 +10,7 @@ import LoadingSpinner from "../../layout/LoadingSpinner";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
 import useTitle from "../../../hooks/useTitle";
+import Error from "../../layout/Error";
 
 export default function Profile() {
   const [data, setData] = useState([]);
@@ -55,6 +56,8 @@ export default function Profile() {
         </div>
       ) : (
         <div className="profile__container">
+          {error && <Error />}
+
           <ProfileInfo
             name={data.name}
             avatar={data.avatar}
@@ -79,7 +82,6 @@ export default function Profile() {
           </div>
         </div>
       )}
-      {error && <div>Error</div>}
     </div>
   );
 }

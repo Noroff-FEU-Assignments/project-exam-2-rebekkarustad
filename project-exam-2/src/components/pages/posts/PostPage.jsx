@@ -13,6 +13,7 @@ import Comments from "../../ui/comments/Comments";
 import CommentForm from "../../ui/comments/CommentForm";
 
 import useTitle from "../../../hooks/useTitle";
+import Error from "../../layout/Error";
 
 export default function PostPage() {
   const [data, setData] = useState([]);
@@ -40,11 +41,15 @@ export default function PostPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(url, OPTIONS);
-
-      setData(response.data);
-      setBackendComments(response.data.comments);
-      setLoading(false);
+      try {
+        const response = await axios.get(url, OPTIONS);
+        setData(response.data);
+        setBackendComments(response.data.comments);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchData();
   }, [url]);
@@ -53,7 +58,7 @@ export default function PostPage() {
     const getToken = window.localStorage.getItem("token");
 
     const postData = async () => {
-      const response = await axios({
+      await axios({
         method: "post",
         url: commentUrl,
         data: {
@@ -80,6 +85,8 @@ export default function PostPage() {
       ) : (
         <div className="container--main">
           <div className="post__container">
+            {error && <Error />}
+
             <PostDetails
               id={data.id}
               author={data.author}

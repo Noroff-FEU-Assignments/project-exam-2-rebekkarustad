@@ -50,7 +50,6 @@ export default function EditPost() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const response = await axios(url, OPTIONS);
         reset({
@@ -88,7 +87,7 @@ export default function EditPost() {
     const postUrl = BASE_API + POST_PATH + `/${id}`;
 
     try {
-      const response = await axios({
+      await axios({
         method: "put",
         url: postUrl,
         data: data,

@@ -12,6 +12,7 @@ import FeedToggle from "../../ui/FeedToggle";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 
 import ProfileCard from "./ProfileCard";
+import Error from "../../layout/Error";
 
 export default function ProfileFeed() {
   const [profileData, setProfileData] = useState([]);
@@ -34,8 +35,6 @@ export default function ProfileFeed() {
         setProfileData((prev) => {
           return [...prev, ...response.data];
         });
-
-        setLoading(false);
       } catch (error) {
         setError(error);
         setLoading(false);
@@ -71,6 +70,8 @@ export default function ProfileFeed() {
       ) : (
         <div className="feeds__container feed__container--profiles">
           <FeedToggle />
+          {error && <Error />}
+
           {profileData.map((data, index) => {
             return (
               <ProfileCard
@@ -85,7 +86,6 @@ export default function ProfileFeed() {
         </div>
       )}
       {cardLoading && <LoadingSpinner />}
-      {error && <div>Error...</div>}
     </div>
   );
 }

@@ -13,6 +13,7 @@ import profile from "../../../images/profile.jpg";
 import { BASE_API, PROFILE_PATH } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
+import Error from "../../layout/Error";
 
 const schema = yup.object().shape({
   avatar: yup.string().url("Must be a valid URL").nullable(),
@@ -54,7 +55,6 @@ export default function EditProfile() {
         setData(result.data);
       } catch (error) {
         setError(error);
-        setLoading(false);
       } finally {
         setLoading(false);
       }
@@ -96,6 +96,7 @@ export default function EditProfile() {
       ) : (
         <div className="container--main">
           <div className="edit__profile--container">
+            {error && <Error />}
             <Heading title="Edit profile" />
             <div className="edit__profile--info">
               {data.avatar === null || data.avatar === "" ? (
@@ -152,7 +153,6 @@ export default function EditProfile() {
           </div>
         </div>
       )}
-      {error && <div>Error</div>}
     </div>
   );
 }
