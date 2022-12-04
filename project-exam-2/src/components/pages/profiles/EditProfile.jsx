@@ -71,7 +71,7 @@ export default function EditProfile() {
     const putUrl = BASE_API + PROFILE_PATH + getName + `/media`;
 
     try {
-      const response = await axios({
+      await axios({
         method: "put",
         url: putUrl,
         data: info,
