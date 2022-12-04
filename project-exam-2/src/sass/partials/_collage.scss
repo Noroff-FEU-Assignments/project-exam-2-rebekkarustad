@@ -33,7 +33,8 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 20% 12% 5% 20% 16% 15% 12%;
   gap: 10px;
-  height: 790px;
+  height: 650px;
+  overflow: hidden;
   grid-template-areas:
     "image3 image8 image6"
     "image3 image5 image6"
@@ -47,7 +48,7 @@
     height: 100%;
     object-fit: cover;
   }
-  @media (max-width: $breakpoint-lrg) {
+  @media (max-width: 1020px) {
     display: none;
   }
 }

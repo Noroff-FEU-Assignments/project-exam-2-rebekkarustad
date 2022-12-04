@@ -75,9 +75,8 @@ export default function SignUp() {
 
   return (
     <div className="register__container">
-      <div className="form__container">
+      <div className="form__container--register">
         <Heading title="The Social Status" />
-        <h2>Welcome! Sign up to get access</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           {loginError && <FormError>{loginError}</FormError>}
           <div className="form__components">

@@ -53,7 +53,7 @@ function Login() {
 
   return (
     <div className="register__container">
-      <div className="form__container">
+      <div className="form__container--register">
         <Heading title="Welcome back" />
         <h2>Sign in to access the fun stuff</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
