@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Nav from "../../layout/Nav";
@@ -11,6 +10,7 @@ import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
 import useTitle from "../../../hooks/useTitle";
 import Error from "../../layout/Error";
+import useToken from "../../../hooks/useToken";
 
 export default function Profile() {
   const [data, setData] = useState([]);
@@ -24,6 +24,7 @@ export default function Profile() {
   let { name } = useParams();
 
   useTitle(name);
+  useToken();
 
   const url =
     BASE_API + PROFILE_PATH + name + `?_following=true&_followers=true`;

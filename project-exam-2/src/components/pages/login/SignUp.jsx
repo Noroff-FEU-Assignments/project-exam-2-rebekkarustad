@@ -59,7 +59,7 @@ export default function SignUp() {
     setLoginError(null);
 
     try {
-      const response = await axios({
+      await axios({
         method: "post",
         url: url,
         data: data,

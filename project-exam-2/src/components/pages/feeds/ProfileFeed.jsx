@@ -13,6 +13,7 @@ import LoadingSpinner from "../../layout/LoadingSpinner";
 
 import ProfileCard from "./ProfileCard";
 import Error from "../../layout/Error";
+import useToken from "../../../hooks/useToken";
 
 export default function ProfileFeed() {
   const [profileData, setProfileData] = useState([]);
@@ -20,6 +21,8 @@ export default function ProfileFeed() {
   const [loading, setLoading] = useState(true);
   const [cardLoading, setCardLoading] = useState(false);
   const [offset, setOffset] = useState(0);
+
+  useToken();
 
   const limit = 9;
 

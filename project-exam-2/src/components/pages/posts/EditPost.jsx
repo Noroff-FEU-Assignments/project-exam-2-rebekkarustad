@@ -14,6 +14,7 @@ import LoadingSpinner from "../../layout/LoadingSpinner";
 import UpdateSuccess from "../../messages/UpdateSuccess";
 import Error from "../../layout/Error";
 import useTitle from "../../../hooks/useTitle";
+import useToken from "../../../hooks/useToken";
 
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a title"),
@@ -31,6 +32,7 @@ export default function EditPost() {
   const [success, setSuccess] = useState(null);
 
   useTitle("Edit post");
+  useToken();
 
   const history = useNavigate();
 

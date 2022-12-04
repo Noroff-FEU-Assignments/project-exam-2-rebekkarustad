@@ -10,6 +10,7 @@ import { FULL_API } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 import Error from "../../layout/Error";
+import useToken from "../../../hooks/useToken";
 
 export default function DiscoverFeed() {
   const [postData, setPostData] = useState([]);
@@ -19,6 +20,7 @@ export default function DiscoverFeed() {
   const [error, setError] = useState(null);
 
   useTitle("Explore");
+  useToken();
 
   const limit = 5;
 
@@ -28,7 +30,6 @@ export default function DiscoverFeed() {
     const fetchData = async () => {
       try {
         const response = await axios(url, OPTIONS);
-
         setPostData((prev) => {
           return [...prev, ...response.data];
         });

@@ -11,7 +11,7 @@ export function UnfollowButton({ children, type, className, onClick }) {
 
   async function Follow() {
     const putData = async () => {
-      const response = await axios({
+      await axios({
         method: "put",
         url: url,
         headers: {

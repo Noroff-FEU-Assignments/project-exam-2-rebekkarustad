@@ -10,8 +10,9 @@ import Nav from "../../layout/Nav";
 import Heading from "../../layout/Heading";
 import FormError from "../../forms/FormError";
 
-import useAxiosPost from "../../../hooks/useAxiosPost";
 import useTitle from "../../../hooks/useTitle";
+
+import useToken from "../../../hooks/useToken";
 
 const baseUrl = BASE_API + POST_PATH;
 
@@ -28,6 +29,7 @@ export default function CreatePost() {
   const [data, setData] = useState([]);
 
   useTitle("Create post");
+  useToken();
 
   const history = useNavigate();
 

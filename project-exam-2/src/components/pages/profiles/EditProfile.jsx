@@ -14,6 +14,7 @@ import { BASE_API, PROFILE_PATH } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 import Error from "../../layout/Error";
+import useToken from "../../../hooks/useToken";
 
 const schema = yup.object().shape({
   avatar: yup.string().url("Must be a valid URL").nullable(),
@@ -29,6 +30,7 @@ export default function EditProfile() {
 
   const history = useNavigate();
   useTitle("Edit profile");
+  useToken();
 
   const getToken = window.localStorage.getItem("token");
   const getName = window.localStorage.getItem("name");

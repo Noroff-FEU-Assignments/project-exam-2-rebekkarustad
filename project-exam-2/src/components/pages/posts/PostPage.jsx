@@ -14,6 +14,7 @@ import CommentForm from "../../ui/comments/CommentForm";
 
 import useTitle from "../../../hooks/useTitle";
 import Error from "../../layout/Error";
+import useToken from "../../../hooks/useToken";
 
 export default function PostPage() {
   const [data, setData] = useState([]);
@@ -23,6 +24,7 @@ export default function PostPage() {
   const [activeComment, setActiveComment] = useState(null);
 
   useTitle(data.title);
+  useToken();
 
   const rootComments = backendComments.filter(
     (backendComment) => backendComment.replyToId === null
