@@ -1,3 +1,7 @@
+.container {
+  max-width: 1400px;
+}
+
 .navbar {
   background-color: $color-light !important;
 }
@@ -33,9 +37,23 @@
   }
 }
 
-.nav__right {
-  button {
-    background-color: transparent;
-    border: none;
+.logo {
+  width: 350px;
+  @media (max-width: 480px) {
+    display: none;
+    width: 0px;
+  }
+}
+.logo-mini {
+  height: 60px;
+  display: none;
+  @media (max-width: 480px) {
+    display: block;
+  }
+}
+
+.navbar-expand-md {
+  .navbar-collapse {
+    padding-top: 6px;
   }
 }

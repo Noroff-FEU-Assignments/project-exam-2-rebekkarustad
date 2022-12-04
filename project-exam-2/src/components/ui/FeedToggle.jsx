@@ -10,11 +10,11 @@ export default function FeedToggle() {
 
   useEffect(() => {
     if (location.pathname === "/postfeed") {
-      setExploreClass("button button-lrg button-wht active");
+      setExploreClass("button button-lrg button-wht active-toggle");
       setProfileClass("button button-lrg button-wht");
     } else {
       setExploreClass("button button-lrg button-wht");
-      setProfileClass("button button-lrg button-wht active");
+      setProfileClass("button button-lrg button-wht active-toggle");
     }
   }, [location.pathname]);
 

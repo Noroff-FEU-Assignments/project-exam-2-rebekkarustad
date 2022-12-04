@@ -12,6 +12,7 @@ import Heading from "../../layout/Heading";
 import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 import UpdateSuccess from "../../messages/UpdateSuccess";
+import Error from "../../layout/Error";
 
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a title"),
@@ -59,7 +60,7 @@ export default function EditPost() {
         setData(response.data);
         setLoading(false);
       } catch (error) {
-        setError(error);
+        setError(true);
         setLoading(false);
       }
     };
@@ -134,7 +135,7 @@ export default function EditPost() {
   return (
     <div>
       <Nav />
-      <div className="container">
+      <div className="container--main">
         {loading ? (
           <div className="spinner">
             <LoadingSpinner />
@@ -189,7 +190,7 @@ export default function EditPost() {
             </button>
           </div>
         )}
-        {error && <div>Error</div>}
+        {error && <Error />}
       </div>
     </div>
   );

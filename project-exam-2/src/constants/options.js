@@ -5,3 +5,7 @@ export const OPTIONS = {
     Authorization: `Bearer ${getToken}`,
   },
 };
+
+export const HEADER = {
+  Authorization: `Bearer ${getToken}`,
+};

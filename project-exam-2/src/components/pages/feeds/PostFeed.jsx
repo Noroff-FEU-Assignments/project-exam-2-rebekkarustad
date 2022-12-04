@@ -44,6 +44,7 @@ export default function DiscoverFeed() {
     ) {
       setCardLoading(true);
       setOffset((prev) => prev + 5);
+      setCardLoading(false);
     }
   };
 

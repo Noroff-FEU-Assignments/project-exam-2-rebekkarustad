@@ -77,7 +77,7 @@ export default function PostPage() {
           <LoadingSpinner />
         </div>
       ) : (
-        <div className="container">
+        <div className="container--main">
           <div className="post__container">
             <PostDetails
               id={data.id}
@@ -88,6 +88,7 @@ export default function PostPage() {
               comments={data.comments}
               reactions={data.reactions}
               tags={data.tags}
+              created={data.created}
             />
 
             <hr />
@@ -105,6 +106,7 @@ export default function PostPage() {
                   addComment={addComment}
                   activeComment={activeComment}
                   setActiveComment={setActiveComment}
+                  postAuthor={data.author.name}
                 />
               ))}
               <CommentForm submitLabel="Write" handleSubmit={addComment} />

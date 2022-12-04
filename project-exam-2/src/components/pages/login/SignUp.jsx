@@ -17,7 +17,7 @@ const schema = yup.object().shape({
   name: yup
     .string()
     .required("Please enter your username")
-    .min(5, "The password must be at least 5 letters long")
+    .min(5, "The username must be at least 5 letters long")
     .matches(
       NAME_REGEX,
       "Must not contain punctuation symbols apart from underscore "
@@ -58,7 +58,12 @@ export default function SignUp() {
     console.log(data);
 
     try {
-      const response = await axios.post(url, data);
+      const response = await axios({
+        method: "post",
+        url: url,
+        data: data,
+        headers: null,
+      });
       console.log("response", response.data);
       history("/thanks");
     } catch (error) {

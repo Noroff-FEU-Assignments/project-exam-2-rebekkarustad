@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import profile from "../../../images/profile.jpg";
 import Emoji from "../../ui/Emoji";
 import { onImageError } from "../../../constants/onImageError";
+import Moment from "react-moment";
 
 const getName = window.localStorage.getItem("name");
 
@@ -13,6 +14,7 @@ export default function PostDetails({
   body,
   reactions,
   tags,
+  created,
 }) {
   return (
     <div className="post__container--detail">
@@ -37,21 +39,28 @@ export default function PostDetails({
         )}
       </div>
       {media === null || media === "" ? null : (
-        <img src={media} alt={title} className="feed__post--image" />
+        <img src={media} alt={title} className="post--image" />
       )}
 
       <Emoji data={reactions} />
 
       <h1>{title}</h1>
+      <div className="post__created">
+        <Moment format="MMMM Do, YYYY">{created}</Moment>
+      </div>
+
       <p>{body}</p>
-      <ul className="tag__container">
-        Tags:
-        {tags.map((tag, i) => (
-          <li key={i} className="tags">
-            {tag}
-          </li>
-        ))}
-      </ul>
+
+      {tags.length === 0 ? null : (
+        <ul className="tag__container">
+          Tags:
+          {tags.map((tag, i) => (
+            <li key={i} className="tags">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

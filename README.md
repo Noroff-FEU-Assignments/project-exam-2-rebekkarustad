@@ -45,7 +45,7 @@ If you look at the prototype, there are some changes from the final design. I ch
 
 3. Colors. I changed the background color several times before I ended up where I did. The simple reason for this is that it felt too light. After user-testing the page early on, it was pointed out that the contrast between the backgrounds and the containers could have been better, even with the shadows.
 
-4. Navigation bar. As you see on the prototype, there was just a plan of using icons, but as I designed and the website came together, I didn't like how they looked and went for words instead. I think it looks better and classier.
+4. Navigation bar. As you see on the prototype, there was just a plan of using icons, but as I designed and the website came together, I didn't like how they looked and went for words instead. I think it looks better and classier. I also added a logo I made for the site, as I felt it was a little anonymous and brandless without it.
 
 ## Technical
 

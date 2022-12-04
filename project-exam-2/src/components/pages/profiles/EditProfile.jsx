@@ -98,7 +98,7 @@ export default function EditProfile() {
           <LoadingSpinner />
         </div>
       ) : (
-        <div className="container">
+        <div className="container--main">
           <div className="edit__profile--container">
             <Heading title="Edit profile" />
             <div className="edit__profile--info">

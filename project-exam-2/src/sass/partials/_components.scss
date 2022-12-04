@@ -42,6 +42,11 @@
 }
 
 .active {
+  color: $color-links !important;
+  text-decoration: underline;
+}
+
+.active-toggle {
   text-decoration: underline;
 }
 

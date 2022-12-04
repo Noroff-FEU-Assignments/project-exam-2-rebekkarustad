@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
@@ -9,6 +9,8 @@ import { BASE_API, POST_PATH } from "../../../constants/api";
 import Nav from "../../layout/Nav";
 import Heading from "../../layout/Heading";
 import FormError from "../../forms/FormError";
+
+import useAxiosPost from "../../../hooks/useAxiosPost";
 
 const baseUrl = BASE_API + POST_PATH;
 
@@ -22,12 +24,14 @@ const schema = yup.object().shape({
 export default function CreatePost() {
   const [submitting, setSubmitting] = useState(false);
   const [createError, setCreateError] = useState(null);
+  const [data, setData] = useState([]);
 
   const history = useNavigate();
 
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -51,6 +55,7 @@ export default function CreatePost() {
         },
       });
       console.log("response", response.data);
+      setData(response.data);
       history(`/post/${response.data.id}`);
     } catch (error) {
       console.log("error", error);
@@ -60,10 +65,20 @@ export default function CreatePost() {
     }
   }
 
+  const ParseTextarea = ({ onChange }) => {
+    const handleChange = (e) => {
+      const value = e.target.value;
+
+      onChange(value.split(","));
+    };
+
+    return <input onChange={handleChange} defaultValue={data.tags} />;
+  };
+
   return (
     <div className="createPage">
       <Nav />
-      <div className="container">
+      <div className="container--main">
         <div className="form__container">
           <Heading title="Create post" />
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -76,9 +91,16 @@ export default function CreatePost() {
             </div>
 
             <div className="form__components">
-              {errors.tag && <FormError>{errors.tag.message}</FormError>}
               <label>Tags</label>
-              <input {...register("tag")} />
+
+              <Controller
+                name="tags"
+                control={control}
+                render={({ field }) => {
+                  const { ref, ...nonRefField } = field;
+                  return <ParseTextarea {...nonRefField} />;
+                }}
+              />
             </div>
 
             <div className="form__components">

@@ -22,8 +22,6 @@ export default function Comments({
     setActiveComment({ id: comment.id, type: "replying" });
   }
 
-  const getName = window.localStorage.getItem("name");
-
   return (
     <div className="comment__container">
       <div className="comment--image">
@@ -40,11 +38,6 @@ export default function Comments({
             className="feed__post--avatar"
             onError={onImageError}
           />
-        )}
-        {comment.author.name === getName ? (
-          <p className="comment--poster">Author</p>
-        ) : (
-          <p className="comment--poster">Reader</p>
         )}
       </div>
       <div className="comment--right">

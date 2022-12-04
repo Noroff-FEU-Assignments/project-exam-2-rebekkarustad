@@ -56,6 +56,7 @@ export default function ProfileFeed() {
     ) {
       setCardLoading(true);
       setOffset((prev) => prev + 9);
+      setCardLoading(false);
     }
   };
 

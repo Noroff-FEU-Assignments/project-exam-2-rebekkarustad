@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import OPTIONS from "../constants/options";
+import axios from "axios";
+import { OPTIONS } from "../constants/options";
 
-const useFetch = (url) => {
-  const [data, setData] = useState(null);
+export default function useAxiosGet(url) {
+  const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -11,13 +12,12 @@ const useFetch = (url) => {
       setLoading(true);
 
       try {
-        const res = await fetch(url, OPTIONS);
-        const json = await res.json();
-
-        setData(json);
-        setLoading(false);
+        const res = await axios(url, OPTIONS);
+        setData(res.data);
       } catch (error) {
         setError(error);
+        setLoading(false);
+      } finally {
         setLoading(false);
       }
     };
@@ -26,6 +26,4 @@ const useFetch = (url) => {
   }, [url]);
 
   return { loading, error, data };
-};
-
-export default useFetch;
+}

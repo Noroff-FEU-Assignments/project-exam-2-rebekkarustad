@@ -30,7 +30,9 @@ export default function PostCard({
       </div>
 
       {media === null || media === "" ? null : (
-        <img src={media} alt={title} className="feed__post--image" />
+        <Link to={`/post/${id}`} className="feed__post--image-container">
+          <img src={media} alt={title} className="feed__post--image" />
+        </Link>
       )}
       <div className="feed__post--heading">
         <Link to={`/post/${id}`}>
