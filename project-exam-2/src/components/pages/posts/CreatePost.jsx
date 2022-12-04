@@ -11,6 +11,7 @@ import Heading from "../../layout/Heading";
 import FormError from "../../forms/FormError";
 
 import useAxiosPost from "../../../hooks/useAxiosPost";
+import useTitle from "../../../hooks/useTitle";
 
 const baseUrl = BASE_API + POST_PATH;
 
@@ -25,6 +26,8 @@ export default function CreatePost() {
   const [submitting, setSubmitting] = useState(false);
   const [createError, setCreateError] = useState(null);
   const [data, setData] = useState([]);
+
+  useTitle("Create post");
 
   const history = useNavigate();
 

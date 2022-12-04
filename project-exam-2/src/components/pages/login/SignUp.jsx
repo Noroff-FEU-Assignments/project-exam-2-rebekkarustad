@@ -10,6 +10,7 @@ import FormError from "../../forms/FormError";
 import Collage from "../../layout/Collage";
 import { BASE_API, REGISTER_PATH } from "../../../constants/api";
 import { NAME_REGEX, EMAIL_REGEX } from "../../../constants/regex";
+import useTitle from "../../../hooks/useTitle";
 
 const url = BASE_API + REGISTER_PATH;
 
@@ -40,6 +41,8 @@ const schema = yup.object().shape({
 export default function SignUp() {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
+
+  useTitle("Register");
 
   const history = useNavigate();
 

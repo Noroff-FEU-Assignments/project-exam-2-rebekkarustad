@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import useTitle from "../../../hooks/useTitle";
+
 import { BASE_API, PROFILE_PATH } from "../../../constants/api";
 import { OPTIONS } from "../../../constants/options";
 
@@ -21,6 +23,8 @@ export default function ProfileFeed() {
   const limit = 9;
 
   const url = BASE_API + PROFILE_PATH + `?limit=${limit}&offset=${offset}`;
+
+  useTitle("Discover");
 
   useEffect(() => {
     const fetchData = async () => {

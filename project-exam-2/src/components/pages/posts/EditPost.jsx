@@ -13,6 +13,7 @@ import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 import UpdateSuccess from "../../messages/UpdateSuccess";
 import Error from "../../layout/Error";
+import useTitle from "../../../hooks/useTitle";
 
 const schema = yup.object().shape({
   title: yup.string().required("Please enter a title"),
@@ -28,6 +29,8 @@ export default function EditPost() {
   const [submitting, setSubmitting] = useState(false);
   const [createError, setCreateError] = useState(null);
   const [success, setSuccess] = useState(null);
+
+  useTitle("Edit post");
 
   const history = useNavigate();
 

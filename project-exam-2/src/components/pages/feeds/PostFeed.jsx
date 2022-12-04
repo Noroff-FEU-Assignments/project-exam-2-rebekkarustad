@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import useToken from "../../../hooks/useToken";
+import useTitle from "../../../hooks/useTitle";
 
 import PostCard from "./PostCard";
 
@@ -17,7 +17,7 @@ export default function DiscoverFeed() {
   const [cardLoading, setCardLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // useToken();
+  useTitle("Explore");
 
   const limit = 5;
 

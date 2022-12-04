@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import Heading from "../../layout/Heading";
 import Collage from "../../layout/Collage";
 
+import useTitle from "../../../hooks/useTitle";
+
 export default function ThankYou() {
+  useTitle("Thank you");
+
   return (
     <div className="register__container">
       <div className="register__thanks--container">

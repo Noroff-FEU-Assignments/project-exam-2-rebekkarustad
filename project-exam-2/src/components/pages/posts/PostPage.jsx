@@ -12,12 +12,16 @@ import PostDetails from "./PostDetails";
 import Comments from "../../ui/comments/Comments";
 import CommentForm from "../../ui/comments/CommentForm";
 
+import useTitle from "../../../hooks/useTitle";
+
 export default function PostPage() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
+
+  useTitle(data.title);
 
   const rootComments = backendComments.filter(
     (backendComment) => backendComment.replyToId === null

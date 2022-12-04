@@ -9,6 +9,7 @@ import { OPTIONS } from "../../../constants/options";
 import LoadingSpinner from "../../layout/LoadingSpinner";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
+import useTitle from "../../../hooks/useTitle";
 
 export default function Profile() {
   const [data, setData] = useState([]);
@@ -20,6 +21,8 @@ export default function Profile() {
   const followName = follow.map((follower) => follower.name);
 
   let { name } = useParams();
+
+  useTitle(name);
 
   const url =
     BASE_API + PROFILE_PATH + name + `?_following=true&_followers=true`;

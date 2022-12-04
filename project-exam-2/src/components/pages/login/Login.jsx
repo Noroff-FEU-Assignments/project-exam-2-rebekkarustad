@@ -9,6 +9,7 @@ import Heading from "../../layout/Heading";
 import FormError from "../../forms/FormError";
 import Collage from "../../layout/Collage";
 import { BASE_API, LOGIN_PATH } from "../../../constants/api";
+import useTitle from "../../../hooks/useTitle";
 
 const url = BASE_API + LOGIN_PATH;
 
@@ -20,6 +21,8 @@ const schema = yup.object().shape({
 function Login() {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
+
+  useTitle("Login");
 
   const {
     register,
@@ -73,7 +76,7 @@ function Login() {
           </button>
 
           <p>
-            Don't have an account? <Link to="/signUp">Register here!</Link>
+            Don't have an account? <Link to="/signUp">Sign up here!</Link>
           </p>
         </form>
       </div>

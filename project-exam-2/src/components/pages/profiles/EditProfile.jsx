@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../../hooks/useTitle";
 
 import FormError from "../../forms/FormError";
 import Nav from "../../layout/Nav";
@@ -26,6 +27,7 @@ export default function EditProfile() {
   const [createError, setCreateError] = useState(null);
 
   const history = useNavigate();
+  useTitle("Edit profile");
 
   const getToken = window.localStorage.getItem("token");
   const getName = window.localStorage.getItem("name");

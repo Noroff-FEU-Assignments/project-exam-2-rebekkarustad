@@ -6,7 +6,7 @@ export default function useToken() {
   const navigation = useNavigate();
 
   useEffect(() => {
-    if (getToken) {
+    if (!getToken) {
       navigation("/");
     }
   }, [getToken, navigation]);
