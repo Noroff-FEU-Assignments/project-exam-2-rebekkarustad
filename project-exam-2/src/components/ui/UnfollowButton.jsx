@@ -18,7 +18,6 @@ export function UnfollowButton({ children, type, className, onClick }) {
           Authorization: `Bearer ${getToken}`,
         },
       });
-      console.log("response", response.data);
       window.location.reload(true);
     };
     putData();

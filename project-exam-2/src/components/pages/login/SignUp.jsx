@@ -55,8 +55,6 @@ export default function SignUp() {
     setSubmitting(true);
     setLoginError(null);
 
-    console.log(data);
-
     try {
       const response = await axios({
         method: "post",
@@ -64,17 +62,13 @@ export default function SignUp() {
         data: data,
         headers: null,
       });
-      console.log("response", response.data);
       history("/thanks");
     } catch (error) {
-      console.log("error", error);
       setLoginError("Your username is already in use. Please select another.");
     } finally {
       setSubmitting(false);
     }
   }
-
-  console.log(errors);
 
   return (
     <div className="register__container">

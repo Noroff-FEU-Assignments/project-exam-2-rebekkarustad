@@ -37,7 +37,6 @@ export default function PostPage() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(url, OPTIONS);
-      console.log("data", response.data);
 
       setData(response.data);
       setBackendComments(response.data.comments);
@@ -47,7 +46,6 @@ export default function PostPage() {
   }, [url]);
 
   const addComment = (text, replyToId) => {
-    console.log("addComment", text, replyToId);
     const getToken = window.localStorage.getItem("token");
 
     const postData = async () => {
@@ -62,7 +60,6 @@ export default function PostPage() {
           Authorization: `Bearer ${getToken}`,
         },
       });
-      console.log("data", response.data);
       setActiveComment(null);
       setError(false);
     };

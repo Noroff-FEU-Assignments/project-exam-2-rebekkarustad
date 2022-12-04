@@ -31,14 +31,10 @@ export default function Profile() {
         const response = await axios(url, OPTIONS);
         const posts = await axios(postUrl, OPTIONS);
 
-        console.log("response", response.data);
-        console.log("post", posts.data);
-
         setData(response.data);
         setPosts(posts.data);
         setFollow(response.data.followers);
       } catch (error) {
-        console.log("error", error);
         setError("Something went wrong");
       } finally {
         setLoading(false);

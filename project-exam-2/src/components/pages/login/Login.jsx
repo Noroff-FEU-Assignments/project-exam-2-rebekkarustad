@@ -37,13 +37,11 @@ function Login() {
 
     try {
       const response = await axios.post(url, data);
-      console.log("response", response.data);
 
       window.localStorage.setItem("token", response.data.accessToken);
       window.localStorage.setItem("name", response.data.name);
       navigate("/postfeed");
     } catch (error) {
-      console.log("error", error);
       setLoginError("Your email or password is wrong");
     } finally {
       setSubmitting(false);

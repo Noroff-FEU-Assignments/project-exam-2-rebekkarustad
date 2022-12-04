@@ -27,8 +27,6 @@ export default function ProfileFeed() {
       try {
         const response = await axios.get(url, OPTIONS);
 
-        console.log("response", response.data);
-
         setProfileData((prev) => {
           return [...prev, ...response.data];
         });

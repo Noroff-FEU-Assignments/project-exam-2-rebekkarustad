@@ -45,7 +45,6 @@ export default function EditProfile() {
 
       try {
         const result = await axios.get(getUrl, OPTIONS);
-        console.log("response", result.data);
         reset({
           avatar: result.data.avatar,
           banner: result.data.banner,
@@ -54,7 +53,6 @@ export default function EditProfile() {
       } catch (error) {
         setError(error);
         setLoading(false);
-        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -65,8 +63,6 @@ export default function EditProfile() {
   async function onSubmit(info) {
     setSubmitting(true);
     setCreateError(null);
-
-    console.log(info);
 
     const putUrl = BASE_API + PROFILE_PATH + getName + `/media`;
 
@@ -79,10 +75,8 @@ export default function EditProfile() {
           Authorization: `Bearer ${getToken}`,
         },
       });
-      console.log("response", response.data);
       history(`/profile/${getName}`);
     } catch (error) {
-      console.log("error", error);
       setCreateError("Something went wrong");
     } finally {
       setSubmitting(false);

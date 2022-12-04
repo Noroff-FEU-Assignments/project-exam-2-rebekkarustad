@@ -50,8 +50,6 @@ export default function EditPost() {
       setLoading(true);
       try {
         const response = await axios(url, OPTIONS);
-        console.log(response.data);
-        console.log(JSON.stringify(response.data.tags));
         reset({
           title: response.data.title,
           body: response.data.body,
@@ -82,8 +80,6 @@ export default function EditPost() {
     setSubmitting(true);
     setCreateError(null);
 
-    console.log(data);
-
     const getToken = window.localStorage.getItem("token");
 
     const postUrl = BASE_API + POST_PATH + `/${id}`;
@@ -97,10 +93,8 @@ export default function EditPost() {
           Authorization: `Bearer ${getToken}`,
         },
       });
-      console.log("response", response.data);
       setSuccess(true);
     } catch (error) {
-      console.log("error", error);
       setCreateError("Something went wrong");
     } finally {
       setSubmitting(false);
@@ -127,7 +121,6 @@ export default function EditPost() {
         history(`/myprofile`);
       }
     } catch (error) {
-      console.log("error", error);
       setCreateError("Something went wrong");
     }
   }

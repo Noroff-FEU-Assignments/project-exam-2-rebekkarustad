@@ -41,8 +41,6 @@ export default function CreatePost() {
     setSubmitting(true);
     setCreateError(null);
 
-    console.log(info);
-
     try {
       const getToken = window.localStorage.getItem("token");
 
@@ -54,11 +52,9 @@ export default function CreatePost() {
           Authorization: `Bearer ${getToken}`,
         },
       });
-      console.log("response", response.data);
       setData(response.data);
       history(`/post/${response.data.id}`);
     } catch (error) {
-      console.log("error", error);
       setCreateError("Something went wrong");
     } finally {
       setSubmitting(false);
