@@ -27,6 +27,7 @@ export default function Emoji({ data }) {
       },
     });
     setShowEmojiPanel(!showEmojiPanel);
+    window.location.reload(true);
   }
 
   return (

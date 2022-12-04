@@ -14,6 +14,7 @@ import PostDetails from "./PostDetails";
 
 import Comments from "../../ui/comments/Comments";
 import CommentForm from "../../ui/comments/CommentForm";
+import { useEffect } from "react";
 
 export default function PostPage() {
   const [activeComment, setActiveComment] = useState(null);
@@ -24,6 +25,10 @@ export default function PostPage() {
   const url = BASE_API + POST_PATH + `/${id}` + FLAG_PATH;
 
   const { data, loading, error, commentData } = useAxiosGet(url);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useTitle(data.title);
   useToken();
